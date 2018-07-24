@@ -18,6 +18,7 @@ setup(name='tadasets',
       include_package_data=True,
       install_requires=[
         'numpy',
+        'matplotlib',
       ],
       python_requires='>=2.7,!=3.1,!=3.2,!=3.3',
       classifiers=[
