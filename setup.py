@@ -6,13 +6,13 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(name='tadasets',
-      version='0.0.1',
+      version='0.0.2',
       description='Great data sets for Topological Data Analysis.',
       long_description=long_description,
       long_description_content_type="text/markdown",	
       author='Nathaniel Saul',
       author_email='nathaniel.saul@wsu.edu',
-      url='https://github.com/sauln/tadasets',
+      url='https://tadasets.scikit-tda.org',
       license='MIT',
       packages=['tadasets'],
       include_package_data=True,
