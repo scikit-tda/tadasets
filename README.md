@@ -49,3 +49,6 @@ tadasets.plot3d(data)
 ```
 
 
+# Contributions
+
+This package is in the very early stages of development. As I think of shapes and data sets, I add them.  If you have ideas, please do suggest them in an issue and submit a pull request! All contributions are welcome.
