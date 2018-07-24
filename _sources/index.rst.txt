@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 
-|PyPI version| |Travis-CI| |Appveyor| |Codecov| |License: LGPL v3|
+|PyPI version| |Travis-CI| |Codecov| |License: LGPL v3|
 
 Ripser
 ========
@@ -30,13 +30,13 @@ Usage
     import tadasets
 
     torus = tadasets.torus(n=2000)
-
+    
 
 .. toctree::
     :maxdepth: 2
     :caption: Usage:
 
-    Show shapes
+    Examples
     reference
 
  
