@@ -6,7 +6,7 @@
 
 |PyPI version| |Travis-CI| |Codecov| |License: LGPL v3|
 
-Ripser
+Tadasets
 ========
 
 This package provides some nice utilities for creating and loading data sets that are useful for Topological Data Analysis. Currently, we provide various synthetic data sets with particular topological features.

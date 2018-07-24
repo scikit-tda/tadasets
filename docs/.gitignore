@@ -1,6 +1,6 @@
 _build
 venv
 test
-ripser.egg-info
-ripser
+tadasets.egg-info
+tadasets
 .cache
