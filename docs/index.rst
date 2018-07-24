@@ -46,7 +46,7 @@ Usage
 .. |Travis-CI| image:: https://travis-ci.org/scikit-tda/tadasets.svg?branch=master
     :target: https://travis-ci.org/scikit-tda/tadasets
 
-.. |Codecov| image:: https://codecov.io/gh/ctralie/ripser/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/ctralie/ripser
-.. |License: LGPL v3| image:: https://img.shields.io/badge/License-LGPL%20v3-blue.svg
+.. |Codecov| image:: https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/scikit-tda/tadasets
+.. |MIT| image:: https://img.shields.io/github/license/mashape/apistatus.svg
    :target: https://www.gnu.org/licenses/lgpl-3.0

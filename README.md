@@ -1,3 +1,9 @@
+[![PyPI version](https://badge.fury.io/py/tadasets.svg)](https://badge.fury.io/py/tadasets)
+[![Build Status](https://travis-ci.org/scikit-tda/tadasets.svg?branch=master)](https://travis-ci.org/scikit-tda/tadasets)
+[![Codecov](https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg)](https://codecov.io/gh/scikit-tda/tadasets)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 # TaDAsets
 Data sets apt for Topological Data Analysis. This project is a part of scikit-tda.
 
