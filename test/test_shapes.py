@@ -37,3 +37,12 @@ class TestTorus:
         t = tadasets.torus(n=345)
         tadasets.plot3d(t)
 
+
+class TestSwissRoll:
+    def test_n(self):
+        t = tadasets.swiss_roll(n=345)
+        assert t.shape[0] == 345
+
+    def test_plt(self):
+        t = tadasets.swiss_roll(n=345)
+        tadasets.plot3d(t)

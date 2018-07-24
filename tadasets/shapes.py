@@ -7,15 +7,15 @@ def sphere(n=100, r=1):
 
     """
 
-    theta = np.random.random((n,)) * 2.0 * np.pi
-    phi = np.random.random((n,)) * np.pi
-    rad = np.ones((n,)) * r
+    theta = np.random.random((n, )) * 2.0 * np.pi
+    phi = np.random.random((n, )) * np.pi
+    rad = np.ones((n, )) * r
 
     data = np.zeros((n, 3))
 
-    data[:,0] = rad * np.cos(theta) * np.cos(phi)
-    data[:,1] = rad * np.cos(theta) * np.sin(phi)
-    data[:,2] = rad * np.sin(theta)   
+    data[:, 0] = rad * np.cos(theta) * np.cos(phi)
+    data[:, 1] = rad * np.cos(theta) * np.sin(phi)
+    data[:, 2] = rad * np.sin(theta)   
 
     return data
 
@@ -50,5 +50,21 @@ def torus(n=100, c=2, a=1):
     
     return data
 
+def swiss_roll(n=100, r=10):
+    """ 
 
-__all__ = ["torus", "sphere"]
+    Reference: Equations mimic [Swiss Roll and SNE by jlmelville](https://jlmelville.github.io/smallvis/swisssne.html)
+    """
+
+    phi = (np.random.random((n, )) * 3 + 1.5) * np.pi
+    psi = np.random.random((n, )) * r
+
+    data = np.zeros((n, 3))
+    data[:, 0] = phi * np.cos(phi)
+    data[:, 1] = phi * np.sin(phi)
+    data[:, 2] = psi
+
+    return data
+
+
+__all__ = ["torus", "sphere", "swiss_roll"]
