@@ -5,6 +5,12 @@ def sphere(n=100, r=1):
     """
         Sample `n` data points on a sphere.
 
+    Parameters
+    -----------
+    n : int
+        Number of data points in shape.
+    r : float
+        Radius of sphere.
     """
 
     theta = np.random.random((n, )) * 2.0 * np.pi
@@ -21,21 +27,16 @@ def sphere(n=100, r=1):
 
 def torus(n=100, c=2, a=1):
     """
-        Sample `n` data points on a torus.
+    Sample `n` data points on a torus.
 
-
-        Inputs
-        ------
-
-        n: int
-            Number of observations to sample
-        
-        c: float
-            radius of 
-        
-        a: float
-            radius of 
-
+    Parameters
+    -----------
+    n : int
+        Number of data points in shape.
+    c : float
+        Distance from center to center of tube.
+    a : float
+        Radius of tube.
     """
     
     assert a <= c, "That's not a torus"
@@ -51,9 +52,18 @@ def torus(n=100, c=2, a=1):
     return data
 
 def swiss_roll(n=100, r=10):
-    """ 
+    """Swiss roll implementation
 
-    Reference: Equations mimic [Swiss Roll and SNE by jlmelville](https://jlmelville.github.io/smallvis/swisssne.html)
+    Parameters
+    ----------
+    n : int 
+        Number of data points in shape.
+    r : float
+        Length of roll
+
+    References
+    ----------
+    Equations mimic [Swiss Roll and SNE by jlmelville](https://jlmelville.github.io/smallvis/swisssne.html)
     """
 
     phi = (np.random.random((n, )) * 3 + 1.5) * np.pi
