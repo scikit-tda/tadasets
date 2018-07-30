@@ -3,10 +3,33 @@ import matplotlib
 matplotlib.use('Agg')
 
 import tadasets
-
+from scipy.spatial.distance import pdist
 
 def norm(p):
     return np.sum(p**2)**0.5
+
+class TestEmbedding:
+    def test_shape(self):
+        d = np.random.random((100, 3))
+        d_emb = tadasets.embed(d, 10)
+        assert d_emb.shape == (100, 10)
+    
+    def test_rotated(self):
+        """ No variables should be all zero.
+        Nonzero variance implies some transformation happened.
+        """
+        d = np.random.random((100, 3))
+        d_emb = tadasets.embed(d, 10)
+        assert np.all(np.var(d_emb, axis=0) > 0)
+
+    def test_dist_matrix_same(self):
+        d = np.random.random((100, 3))
+        dists = pdist(d)
+
+        d_emb = tadasets.embed(d, 10)
+        dists_emb = pdist(d_emb)
+
+        np.testing.assert_almost_equal(dists_emb, dists)
 
 
 class TestSphere:
