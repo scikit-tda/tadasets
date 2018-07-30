@@ -1,7 +1,7 @@
 import numpy as np
+from .dimension import embed
 
-
-def sphere(n=100, r=1):
+def sphere(n=100, r=1, ambient=None):
     """
         Sample `n` data points on a sphere.
 
@@ -23,10 +23,13 @@ def sphere(n=100, r=1):
     data[:, 1] = rad * np.cos(theta) * np.sin(phi)
     data[:, 2] = rad * np.sin(theta)
 
+    if ambient:
+        data = embed(data, ambient)
+
     return data
 
 
-def torus(n=100, c=2, a=1):
+def torus(n=100, c=2, a=1, ambient=None):
     """
     Sample `n` data points on a torus.
 
@@ -50,10 +53,13 @@ def torus(n=100, c=2, a=1):
     data[:, 1] = (c + a * np.cos(theta)) * np.sin(phi)
     data[:, 2] = a * np.sin(theta)
 
+    if ambient:
+        data = embed(data, ambient)
+
     return data
 
 
-def swiss_roll(n=100, r=10):
+def swiss_roll(n=100, r=10, ambient=None):
     """Swiss roll implementation
 
     Parameters
@@ -75,6 +81,9 @@ def swiss_roll(n=100, r=10):
     data[:, 0] = phi * np.cos(phi)
     data[:, 1] = phi * np.sin(phi)
     data[:, 2] = psi
+
+    if ambient:
+        data = embed(data, ambient)
 
     return data
 

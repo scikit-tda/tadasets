@@ -44,6 +44,10 @@ class TestSphere:
         rs = np.fromiter((norm(p) for p in s), np.float64)
         print(np.all(rs <= r+bf))
 
+    def test_ambient(self):
+        s = tadasets.sphere(n=200, r=3, ambient=15)
+        assert s.shape == (200, 15)
+
 
 class TestTorus:
     def test_n(self):
@@ -61,6 +65,10 @@ class TestTorus:
     def test_plt(self):
         t = tadasets.torus(n=345)
         tadasets.plot3d(t)
+    
+    def test_ambient(self):
+        s = tadasets.torus(n=200, c=3, ambient=15)
+        assert s.shape == (200, 15)
 
 
 class TestSwissRoll:
@@ -71,3 +79,8 @@ class TestSwissRoll:
     def test_plt(self):
         t = tadasets.swiss_roll(n=345)
         tadasets.plot3d(t)
+            
+    def test_ambient(self):
+        s = tadasets.swiss_roll(n=200, ambient=15)
+        assert s.shape == (200, 15)
+
