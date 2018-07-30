@@ -6,6 +6,7 @@ python:
   - "3.6"
 
 install:
+  - pip install scipy
   - pip install .
   - pip install pytest-cov
 
