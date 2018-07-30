@@ -11,6 +11,8 @@ def sphere(n=100, r=1, ambient=None):
         Number of data points in shape.
     r : float
         Radius of sphere.
+    ambient : int, default=None
+        Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     """
 
     theta = np.random.random((n,)) * 2.0 * np.pi
@@ -41,6 +43,8 @@ def torus(n=100, c=2, a=1, ambient=None):
         Distance from center to center of tube.
     a : float
         Radius of tube.
+    ambient : int, default=None
+        Embed the torus into a space with ambient dimension equal to `ambient`. The torus is randomly rotated in this high dimensional space.
     """
 
     assert a <= c, "That's not a torus"
@@ -68,6 +72,8 @@ def swiss_roll(n=100, r=10, ambient=None):
         Number of data points in shape.
     r : float
         Length of roll
+    ambient : int, default=None
+        Embed the swiss roll into a space with ambient dimension equal to `ambient`. The swiss roll is randomly rotated in this high dimensional space.
 
     References
     ----------

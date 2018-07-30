@@ -11,3 +11,5 @@ Reference
 
 .. autofunction:: swiss_roll
 
+.. autofunction:: embed
+
