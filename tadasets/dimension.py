@@ -23,7 +23,7 @@ def embed(data, ambient=50):
     ), "Dimensionality of ambient space ({}) must be greater than dimensionality of data ({}).".format(
         ambient, d
     )
-    # import pdb; pdb.set_trace()
+
     base = np.zeros((n, ambient))
     base[:, :d] = data
 

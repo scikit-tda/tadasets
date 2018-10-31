@@ -1,6 +1,7 @@
 import numpy as np
 from .dimension import embed
 
+
 def sphere(n=100, r=1, ambient=None):
     """
         Sample `n` data points on a sphere.
