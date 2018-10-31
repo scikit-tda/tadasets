@@ -26,6 +26,9 @@ def from_mesh(vertices, triangles, n=1000):
 
     """
 
+    assert vertices.shape[1] == 3
+    assert triangles.shape[1] == 3
+
     # Step 1: Compute cross product of all face triangles and use to compute
     # areas (very similar to code used to compute vertex normals)
 
@@ -119,3 +122,6 @@ def from_mesh(vertices, triangles, n=1000):
     # Ns += (1 - u - v) * VNormals[triangles[tidx, 0], :]
 
     return Ps
+
+
+__all__ = ["from_mesh"]
