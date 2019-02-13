@@ -1,0 +1,6 @@
+tadasets.swiss\_roll
+====================
+
+.. currentmodule:: tadasets
+
+.. autofunction:: swiss_roll

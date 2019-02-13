@@ -1,0 +1,6 @@
+tadasets.shapes.dsphere
+=======================
+
+.. currentmodule:: tadasets.shapes
+
+.. autofunction:: dsphere

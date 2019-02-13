@@ -1,0 +1,6 @@
+tadasets.torus
+==============
+
+.. currentmodule:: tadasets
+
+.. autofunction:: torus
