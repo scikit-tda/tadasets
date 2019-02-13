@@ -6,6 +6,12 @@ from .dimension import embed
 __all__ = ["torus", "dsphere", "sphere", "swiss_roll"]
 
 
+## TODO: Make a base class that controls `ambient` and `noise`.
+class Shape:
+    def __init__(self):
+        pass
+
+
 def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
     """
     Sample `n` data points on a d-sphere.
@@ -35,7 +41,7 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
 
     return data
 
-def sphere(n=100, r=1, ambient=None):
+def sphere(n=100, r=1, noise=None, ambient=None):
     """
         Sample `n` data points on a sphere.
 
@@ -69,7 +75,7 @@ def sphere(n=100, r=1, ambient=None):
     return data
 
 
-def torus(n=100, c=2, a=1, ambient=None):
+def torus(n=100, c=2, a=1, noise=None, ambient=None):
     """
     Sample `n` data points on a torus.
 
@@ -95,13 +101,16 @@ def torus(n=100, c=2, a=1, ambient=None):
     data[:, 1] = (c + a * np.cos(theta)) * np.sin(phi)
     data[:, 2] = a * np.sin(theta)
 
+    if noise: 
+        data += noise * np.random.randn(*data.shape)
+
     if ambient:
         data = embed(data, ambient)
 
     return data
 
 
-def swiss_roll(n=100, r=10, ambient=None):
+def swiss_roll(n=100, r=10, noise=None, ambient=None):
     """Swiss roll implementation
 
     Parameters
@@ -125,6 +134,9 @@ def swiss_roll(n=100, r=10, ambient=None):
     data[:, 0] = phi * np.cos(phi)
     data[:, 1] = phi * np.sin(phi)
     data[:, 2] = psi
+
+    if noise: 
+        data += noise * np.random.randn(*data.shape)
 
     if ambient:
         data = embed(data, ambient)
