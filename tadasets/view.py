@@ -8,3 +8,5 @@ def plot3d(data, fig=None, ax=None, **params):
     ax = ax if ax else fig.add_subplot(111, projection="3d")
     ax.scatter(data[:, 0], data[:, 1], data[:, 2], **params)
     return ax
+
+__all__ = ["plot3d"]

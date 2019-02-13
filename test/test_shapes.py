@@ -37,14 +37,30 @@ class TestSphere:
     
     def test_r(self):
         r = 23
-        bf = 1e-5
         s = tadasets.sphere(r=r)
         rs = np.fromiter((norm(p) for p in s), np.float64)
-        print(np.all(rs <= r+bf))
+        assert np.all(rs <= r+1e-5)
+        assert np.all([r-1e-5 <= rx <= r+1e-5 for rx in rs])
 
     def test_ambient(self):
         s = tadasets.sphere(n=200, r=3, ambient=15)
         assert s.shape == (200, 15)
+
+
+class TestDsphere:
+    def test_d(self):
+        s = tadasets.dsphere(n=100, d=2)
+        assert s.shape[1] == 3
+
+    def test_equivalence(self):
+        s = tadasets.dsphere(n=100, d=2)
+        rs = np.fromiter((norm(p) for p in s), np.float64)
+        assert np.all([1-1e-5 <= r <= 1+1e-5 for r in rs])
+
+    def test_r(self):
+        s = tadasets.dsphere(n=100, d=2, r=4)
+        rs = np.fromiter((norm(p) for p in s), np.float64)
+        assert np.all([4-1e-5 <= r <= 4+1e-5 for r in rs])
 
 
 class TestTorus:

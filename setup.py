@@ -28,6 +28,12 @@ setup(name='tadasets',
       license='MIT',
       packages=['tadasets'],
       include_package_data=True,
+      extras_require={ #use `pip install -e ".[testing]"``
+        'testing': [
+          'pytest',
+          'scipy'   
+        ]
+      },
       install_requires=[
         'numpy',
         'matplotlib',
