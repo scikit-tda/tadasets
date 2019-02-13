@@ -2,7 +2,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
-from kmapper import __version__
+from tadasets import __version__
 from theme_settings import *
 
 project = u'TaDAsets'

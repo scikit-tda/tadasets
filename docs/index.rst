@@ -34,10 +34,9 @@ Usage
 
 .. toctree::
     :maxdepth: 2
-    :caption: Usage:
 
-    Examples
-    reference
+    notebooks/Examples
+    reference/index
 
  
 .. |PyPI version| image:: https://badge.fury.io/py/tadasets.svg
