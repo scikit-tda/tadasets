@@ -32,6 +32,12 @@ setup(name='tadasets',
         'testing': [
           'pytest',
           'scipy'   
+        ],
+        'docs': [ # `pip install -e ".[docs]"``
+          'sphinx',
+          'nbsphinx',
+          'sphinx-better-theme',
+          'sphinxcontrib-fulltoc'
         ]
       },
       install_requires=[
