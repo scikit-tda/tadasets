@@ -3,7 +3,7 @@ from .dimension import embed
 
 
 
-__all__ = ["torus", "dsphere", "sphere", "swiss_roll"]
+__all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign"]
 
 
 ## TODO: Make a base class that controls `ambient` and `noise`.
@@ -40,6 +40,7 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
 
 
     return data
+
 
 def sphere(n=100, r=1, noise=None, ambient=None):
     """
@@ -143,3 +144,27 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None):
 
     return data
 
+
+def infty_sign(n=100, noise=None):
+    """Construct a figure 8 or infinity sign with :code:`n` points and noise level with :code:`noise` standard deviation.
+
+    Parameters
+    ============
+
+    n: int
+        number of points in returned data set.
+    noise: float
+        standard deviation of normally distributed noise added to data.
+    
+    """
+
+
+    t = np.linspace(0, 2*np.pi, n+1)[0:n]
+    X = np.zeros((n, 2))
+    X[:, 0] = np.cos(t)
+    X[:, 1] = np.sin(2*t)
+
+    if noise:
+        X += noise * np.random.randn(n, 2)
+    
+    return X
