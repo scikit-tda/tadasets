@@ -55,7 +55,7 @@
 
 
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;torus&quot;</span><span class="p">,</span> <span class="s2">&quot;dsphere&quot;</span><span class="p">,</span> <span class="s2">&quot;sphere&quot;</span><span class="p">,</span> <span class="s2">&quot;swiss_roll&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;torus&quot;</span><span class="p">,</span> <span class="s2">&quot;dsphere&quot;</span><span class="p">,</span> <span class="s2">&quot;sphere&quot;</span><span class="p">,</span> <span class="s2">&quot;swiss_roll&quot;</span><span class="p">,</span> <span class="s2">&quot;infty_sign&quot;</span><span class="p">]</span>
 
 
 <span class="c1">## TODO: Make a base class that controls `ambient` and `noise`.</span>
@@ -64,7 +64,7 @@
         <span class="k">pass</span>
 
 
-<div class="viewcode-block" id="dsphere"><a class="viewcode-back" href="../../reference/stubs/tadasets.dsphere.html#tadasets.shapes.dsphere">[docs]</a><span class="k">def</span> <span class="nf">dsphere</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="dsphere"><a class="viewcode-back" href="../../reference/stubs/tadasets.dsphere.html#tadasets.dsphere">[docs]</a><span class="k">def</span> <span class="nf">dsphere</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sample `n` data points on a d-sphere.</span>
 
@@ -93,7 +93,8 @@
 
     <span class="k">return</span> <span class="n">data</span></div>
 
-<div class="viewcode-block" id="sphere"><a class="viewcode-back" href="../../reference/stubs/tadasets.sphere.html#tadasets.shapes.sphere">[docs]</a><span class="k">def</span> <span class="nf">sphere</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="sphere"><a class="viewcode-back" href="../../reference/stubs/tadasets.sphere.html#tadasets.sphere">[docs]</a><span class="k">def</span> <span class="nf">sphere</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sample `n` data points on a sphere.</span>
 
@@ -127,7 +128,7 @@
     <span class="k">return</span> <span class="n">data</span></div>
 
 
-<div class="viewcode-block" id="torus"><a class="viewcode-back" href="../../reference/stubs/tadasets.torus.html#tadasets.shapes.torus">[docs]</a><span class="k">def</span> <span class="nf">torus</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="torus"><a class="viewcode-back" href="../../reference/stubs/tadasets.torus.html#tadasets.torus">[docs]</a><span class="k">def</span> <span class="nf">torus</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sample `n` data points on a torus.</span>
 
@@ -162,7 +163,7 @@
     <span class="k">return</span> <span class="n">data</span></div>
 
 
-<div class="viewcode-block" id="swiss_roll"><a class="viewcode-back" href="../../reference/stubs/tadasets.swiss_roll.html#tadasets.shapes.swiss_roll">[docs]</a><span class="k">def</span> <span class="nf">swiss_roll</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="swiss_roll"><a class="viewcode-back" href="../../reference/stubs/tadasets.swiss_roll.html#tadasets.swiss_roll">[docs]</a><span class="k">def</span> <span class="nf">swiss_roll</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Swiss roll implementation</span>
 
 <span class="sd">    Parameters</span>
@@ -195,6 +196,30 @@
 
     <span class="k">return</span> <span class="n">data</span></div>
 
+
+<div class="viewcode-block" id="infty_sign"><a class="viewcode-back" href="../../reference/stubs/tadasets.infty_sign.html#tadasets.infty_sign">[docs]</a><span class="k">def</span> <span class="nf">infty_sign</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Construct a figure 8 or infinity sign with :code:`n` points and noise level with :code:`noise` standard deviation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ============</span>
+
+<span class="sd">    n: int</span>
+<span class="sd">        number of points in returned data set.</span>
+<span class="sd">    noise: float</span>
+<span class="sd">        standard deviation of normally distributed noise added to data.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">noise</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">+=</span> <span class="n">noise</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">X</span></div>
 </pre></div>
 
           </div>

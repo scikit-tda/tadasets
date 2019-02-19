@@ -1,0 +1,6 @@
+tadasets.infty\_sign
+====================
+
+.. currentmodule:: tadasets
+
+.. autofunction:: infty_sign

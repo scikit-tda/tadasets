@@ -1,6 +1,0 @@
-tadasets.shapes.sphere
-======================
-
-.. currentmodule:: tadasets.shapes
-
-.. autofunction:: sphere

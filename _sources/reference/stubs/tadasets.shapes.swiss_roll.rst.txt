@@ -1,6 +1,0 @@
-tadasets.shapes.swiss\_roll
-===========================
-
-.. currentmodule:: tadasets.shapes
-
-.. autofunction:: swiss_roll
