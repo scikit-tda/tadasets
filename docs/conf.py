@@ -3,7 +3,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 from tadasets import __version__
-from theme_settings import *
+from sktda_docs_config import *
 
 project = u'TaDAsets'
 copyright = u'2018, Nathaniel Saul'

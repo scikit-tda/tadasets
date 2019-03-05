@@ -34,10 +34,7 @@ setup(name='tadasets',
           'scipy'   
         ],
         'docs': [ # `pip install -e ".[docs]"``
-          'sphinx',
-          'nbsphinx',
-          'sphinx-better-theme',
-          'sphinxcontrib-fulltoc'
+          'sktda_docs_config'
         ]
       },
       install_requires=[
