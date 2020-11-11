@@ -24,6 +24,8 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None, seed=None):
         Radius of sphere.
     ambient : int, default=None
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
+    seed : int, default=None
+        Seed for random state. 
     """
     np.random.seed(seed)
     data = np.random.randn(n, d+1)
@@ -55,6 +57,8 @@ def sphere(n=100, r=1, noise=None, ambient=None, seed=None):
         Radius of sphere.
     ambient : int, default=None
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
+    seed : int, default=None
+        Seed for random state. 
     """
 
     np.random.seed(seed)
@@ -92,6 +96,8 @@ def torus(n=100, c=2, a=1, noise=None, ambient=None, seed=None):
         Radius of tube.
     ambient : int, default=None
         Embed the torus into a space with ambient dimension equal to `ambient`. The torus is randomly rotated in this high dimensional space.
+    seed : int, default=None
+        Seed for random state. 
     """
 
     assert a <= c, "That's not a torus"
@@ -125,6 +131,8 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None, seed=None):
         Length of roll
     ambient : int, default=None
         Embed the swiss roll into a space with ambient dimension equal to `ambient`. The swiss roll is randomly rotated in this high dimensional space.
+    seed : int, default=None
+        Seed for random state. 
 
     References
     ----------
@@ -159,7 +167,8 @@ def infty_sign(n=100, noise=None, seed=None):
         number of points in returned data set.
     noise: float
         standard deviation of normally distributed noise added to data.
-    
+    seed : int, default=None
+        Seed for random state. 
     """
 
 
