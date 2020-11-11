@@ -12,7 +12,7 @@ class Shape:
         pass
 
 
-def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
+def dsphere(n=100, d=2, r=1, noise=None, ambient=None, seed=None):
     """
     Sample `n` data points on a d-sphere.
 
@@ -25,6 +25,7 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
     ambient : int, default=None
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     """
+    np.random.seed(seed)
     data = np.random.randn(n, d+1)
 
     # Normalize points to the sphere
@@ -42,7 +43,7 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
     return data
 
 
-def sphere(n=100, r=1, noise=None, ambient=None):
+def sphere(n=100, r=1, noise=None, ambient=None, seed=None):
     """
         Sample `n` data points on a sphere.
 
@@ -56,6 +57,7 @@ def sphere(n=100, r=1, noise=None, ambient=None):
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     """
 
+    np.random.seed(seed)
     theta = np.random.random((n,)) * 2.0 * np.pi
     phi = np.random.random((n,)) * np.pi
     rad = np.ones((n,)) * r
@@ -76,7 +78,7 @@ def sphere(n=100, r=1, noise=None, ambient=None):
     return data
 
 
-def torus(n=100, c=2, a=1, noise=None, ambient=None):
+def torus(n=100, c=2, a=1, noise=None, ambient=None, seed=None):
     """
     Sample `n` data points on a torus.
 
@@ -94,6 +96,7 @@ def torus(n=100, c=2, a=1, noise=None, ambient=None):
 
     assert a <= c, "That's not a torus"
 
+    np.random.seed(seed)
     theta = np.random.random((n,)) * 2.0 * np.pi
     phi = np.random.random((n,)) * 2.0 * np.pi
 
@@ -111,7 +114,7 @@ def torus(n=100, c=2, a=1, noise=None, ambient=None):
     return data
 
 
-def swiss_roll(n=100, r=10, noise=None, ambient=None):
+def swiss_roll(n=100, r=10, noise=None, ambient=None, seed=None):
     """Swiss roll implementation
 
     Parameters
@@ -128,6 +131,7 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None):
     Equations mimic [Swiss Roll and SNE by jlmelville](https://jlmelville.github.io/smallvis/swisssne.html)
     """
 
+    np.random.seed(seed)
     phi = (np.random.random((n,)) * 3 + 1.5) * np.pi
     psi = np.random.random((n,)) * r
 
@@ -145,7 +149,7 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None):
     return data
 
 
-def infty_sign(n=100, noise=None):
+def infty_sign(n=100, noise=None, seed=None):
     """Construct a figure 8 or infinity sign with :code:`n` points and noise level with :code:`noise` standard deviation.
 
     Parameters
@@ -159,6 +163,7 @@ def infty_sign(n=100, noise=None):
     """
 
 
+    np.random.seed(seed)
     t = np.linspace(0, 2*np.pi, n+1)[0:n]
     X = np.zeros((n, 2))
     X[:, 0] = np.cos(t)
