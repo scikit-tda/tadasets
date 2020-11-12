@@ -1,7 +1,6 @@
 import numpy as np
 from .dimension import embed
 from .rotate import rotate_2D
-from .custom_exceptions import RotationAngleNotInRangeError
 
 __all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign"]
 
@@ -168,10 +167,7 @@ def infty_sign(n=100, noise=None, angle=None):
         X += noise * np.random.randn(n, 2)
 
     if angle is not None:
-        try:
-            assert angle >= -np.pi and angle <= 2*np.pi
-        except AssertionError:
-            raise RotationAngleNotInRangeError(angle, 0, "pi")
+        assert angle >= -np.pi and angle <= 2*np.pi, "Angle {angle} not in range. Angle should be in the range {min_angle} <= angle <= {max_angle}".format(angle=angle, min_angle="-pi", max_angle="2*pi")
 
         X = rotate_2D(X, angle=angle)
 

@@ -11,7 +11,7 @@ class TestEmbedding:
         d = np.random.random((100, 3))
         d_emb = tadasets.embed(d, 10)
         assert d_emb.shape == (100, 10)
-    
+
     def test_rotated(self):
         """ No variables should be all zero.
         Nonzero variance implies some transformation happened.
@@ -34,7 +34,7 @@ class TestSphere:
     def test_n(self):
         s = tadasets.sphere(n=543)
         assert s.shape[0] == 543
-    
+
     def test_r(self):
         r = 23
         s = tadasets.sphere(r=r)
@@ -67,7 +67,7 @@ class TestTorus:
     def test_n(self):
         t = tadasets.torus(n=345)
         assert t.shape[0] == 345
-    
+
     def test_bounds(self):
         c, a = 3, 2
         t = tadasets.torus(n=3045, c=3, a=2)
@@ -79,7 +79,7 @@ class TestTorus:
     def test_plt(self):
         t = tadasets.torus(n=345)
         tadasets.plot3d(t)
-    
+
     def test_ambient(self):
         s = tadasets.torus(n=200, c=3, ambient=15)
         assert s.shape == (200, 15)
@@ -93,8 +93,24 @@ class TestSwissRoll:
     def test_plt(self):
         t = tadasets.swiss_roll(n=345)
         tadasets.plot3d(t)
-            
+
     def test_ambient(self):
         s = tadasets.swiss_roll(n=200, ambient=15)
         assert s.shape == (200, 15)
 
+class TestInfty:
+    def test_n(self):
+        t = tadasets.infty_sign(n=345)
+        assert t.shape[0] == 345
+
+    def test_rotation(self):
+        try:
+            t = tadasets.infty_sign(n=345, angle=-100)
+        except AssertionError:
+            assert True
+        try:
+            t = tadasets.infty_sign(n=345, angle=300)
+        except AssertionError:
+            assert True
+        t = tadasets.infty_sign(n=345, angle=2)
+        assert t.shape[0] == 345
