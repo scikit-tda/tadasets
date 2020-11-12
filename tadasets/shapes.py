@@ -1,7 +1,7 @@
 import numpy as np
 from .dimension import embed
-
-
+from .rotate import rotate_2D
+from .custom_exceptions import RotationAngleNotInRangeError
 
 __all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign"]
 
@@ -28,9 +28,9 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
     data = np.random.randn(n, d+1)
 
     # Normalize points to the sphere
-    data = r * data / np.sqrt(np.sum(data**2, 1)[:, None]) 
+    data = r * data / np.sqrt(np.sum(data**2, 1)[:, None])
 
-    if noise: 
+    if noise:
         data += noise * np.random.randn(*data.shape)
 
     if ambient:
@@ -67,7 +67,7 @@ def sphere(n=100, r=1, noise=None, ambient=None):
     data[:, 2] = rad * np.sin(theta)
 
 
-    if noise: 
+    if noise:
         data += noise * np.random.randn(*data.shape)
 
     if ambient:
@@ -102,7 +102,7 @@ def torus(n=100, c=2, a=1, noise=None, ambient=None):
     data[:, 1] = (c + a * np.cos(theta)) * np.sin(phi)
     data[:, 2] = a * np.sin(theta)
 
-    if noise: 
+    if noise:
         data += noise * np.random.randn(*data.shape)
 
     if ambient:
@@ -116,7 +116,7 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None):
 
     Parameters
     ----------
-    n : int 
+    n : int
         Number of data points in shape.
     r : float
         Length of roll
@@ -136,7 +136,7 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None):
     data[:, 1] = phi * np.sin(phi)
     data[:, 2] = psi
 
-    if noise: 
+    if noise:
         data += noise * np.random.randn(*data.shape)
 
     if ambient:
@@ -144,8 +144,7 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None):
 
     return data
 
-
-def infty_sign(n=100, noise=None):
+def infty_sign(n=100, noise=None, angle=None):
     """Construct a figure 8 or infinity sign with :code:`n` points and noise level with :code:`noise` standard deviation.
 
     Parameters
@@ -155,7 +154,8 @@ def infty_sign(n=100, noise=None):
         number of points in returned data set.
     noise: float
         standard deviation of normally distributed noise added to data.
-    
+    angle: float
+        angle in radians to rotate the infinity sign.
     """
 
 
@@ -166,5 +166,13 @@ def infty_sign(n=100, noise=None):
 
     if noise:
         X += noise * np.random.randn(n, 2)
-    
+
+    if angle is not None:
+        try:
+            assert angle >= -np.pi and angle <= 2*np.pi
+        except AssertionError:
+            raise RotationAngleNotInRangeError(angle, 0, "pi")
+
+        X = rotate_2D(X, angle=angle)
+
     return X
