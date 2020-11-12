@@ -176,3 +176,44 @@ def infty_sign(n=100, noise=None, angle=None):
         X = rotate_2D(X, angle=angle)
 
     return X
+
+def generate_swiss_holes(n_holes, d):
+    """ Generates Swiss Cheese Holes
+
+    Parameters
+    ============
+    n_holes: int
+        number of holes in return data set.
+    d: int
+        number of dimensions
+    """
+    # Sample radiuses from a log-uniform distribution
+    # Log uniform to ensure sizes vary reasonably
+    radiuses = np.exp(np.random.uniform(np.log(0.2),np.log(0.1),size=n_holes))
+    centers = np.random.uniform(-1,1,size=(n_holes,d))
+    return centers, radiuses
+
+def in_a_hole(row, centers, radiuses):
+    return any(np.apply_along_axis(np.linalg.norm,1,row - centers) <= radiuses) is False
+
+def d_swiss_cheese(n_points=10000, n_holes=4, d=2, noise=None, seed=None):
+    """ Creates a square-formed swiss cheese manifold in d dimensions.
+
+    Parameters
+    ============
+
+    n_points: int
+        number of points in returned data set.
+    n_holes: int
+        number of holes in return data set.
+    d: int
+        number of dimensions
+    """
+    if seed is not None:
+        np.random.seed(seed)
+
+    points = np.random.uniform(-1,1, size=(n_points, d))
+    centers, radiuses = generate_swiss_holes(n_holes, d)
+
+    points = points[np.apply_along_axis(in_a_hole,1,points,centers,radiuses),:]
+    return points
