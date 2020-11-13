@@ -1,5 +1,5 @@
 import numpy as np
-
+import pytest
 import tadasets
 from scipy.spatial.distance import pdist
 
@@ -104,13 +104,8 @@ class TestInfty:
         assert t.shape[0] == 345
 
     def test_rotation(self):
-        try:
+        with pytest.raises(AssertionError) as ae:
             t = tadasets.infty_sign(n=345, angle=-100)
-        except AssertionError:
-            assert True
-        try:
             t = tadasets.infty_sign(n=345, angle=300)
-        except AssertionError:
-            assert True
         t = tadasets.infty_sign(n=345, angle=2)
         assert t.shape[0] == 345
