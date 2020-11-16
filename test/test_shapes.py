@@ -98,20 +98,6 @@ class TestSwissRoll:
         s = tadasets.swiss_roll(n=200, ambient=15)
         assert s.shape == (200, 15)
 
-
-class TestSwissCheese:
-    def test_n(self):
-        t = tadasets.d_swiss_cheese(n_points=345)
-        assert t.shape[0] == 345
-
-    def test_plt(self):
-        t = tadasets.d_swiss_cheese(n_points=345, d = 3)
-        tadasets.plot3d(t)
-
-    def test_ambient(self):
-        s = tadasets.d_swiss_cheese(n_points=200, d=15)
-        assert s.shape == (200, 15)
-
 class TestInfty:
     def test_n(self):
         t = tadasets.infty_sign(n=345)
