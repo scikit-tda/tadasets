@@ -1,5 +1,4 @@
 import numpy as np
-from .custom_exceptions import NotImplementedError
 
 def get_phi(row):
     """Helper function for rotating data.
@@ -8,7 +7,7 @@ def get_phi(row):
     """
     return np.arctan2(row[0], row[1])
 
-def rotate_2D(d, angle, centered_around_zero=True):
+def rotate_2D(d, angle):
     """Rotate a 2-dimensional figure.
 
     Parameters
@@ -23,11 +22,9 @@ def rotate_2D(d, angle, centered_around_zero=True):
     except AssertionError:
         raise ValueError("Error: data has {} dimensions, but should only be 2. ".format(d.shape[1]))
 
-    if centered_around_zero is False:
-        raise NotImplementedError("Error: rotation for data not centered around zero is not implemented yet. ")
     rot = angle - np.pi/2
     phis = np.apply_along_axis(get_phi, 1, d)
-    phi_new = phis + rot 
+    phi_new = phis + rot
     r = np.sqrt(d[:, 0] ** 2 + d[:, 1] ** 2)
 
     x = r * np.cos(phi_new)
