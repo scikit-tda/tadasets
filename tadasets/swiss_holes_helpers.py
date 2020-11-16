@@ -15,7 +15,7 @@ def in_a_hole(row, centers, radiuses):
     """
     return any(np.apply_along_axis(np.linalg.norm,1,row - centers) <= radiuses) is False
 
-def eliminate_overlaps(centers, radiuses):
+def eliminate_overlaps(centers, radiuses, prioritize_bigger_balls):
     """Eliminates larger overlapping circles.
     TBD: Could probably be sped up using the miniball algorithm.
 
@@ -28,6 +28,8 @@ def eliminate_overlaps(centers, radiuses):
         All the radiuses of all the holes.
     """
     inds = radiuses.argsort()
+    if prioritize_bigger_balls is True:
+        inds = inds[::-1]
     centers = centers[inds]
     radiuses = radiuses[inds]
     remove = set()
@@ -49,6 +51,6 @@ def generate_swiss_holes(n_holes, d):
     """
     # Sample radiuses from a log-uniform distribution
     # Log uniform to ensure sizes vary reasonably
-    radiuses = np.exp(np.random.uniform(np.log(0.2),np.log(0.1),size=n_holes))
+    radiuses = np.exp(np.random.uniform(np.log(0.2),np.log(0.5),size=n_holes))
     centers = np.random.uniform(-1,1,size=(n_holes,d))
     return centers, radiuses
