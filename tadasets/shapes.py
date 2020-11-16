@@ -187,7 +187,7 @@ def infty_sign(n=100, noise=None, angle=None, seed=None):
         X = rotate_2D(X, angle=angle)
     return X
 
-def d_swiss_cheese(n_points=10000, n_holes=4, d=2, noise=None, seed=None, non_overlapping=False):
+def d_swiss_cheese(n_points=10000, n_holes=4, d=2, noise=None, seed=None, non_overlapping=False, prioritize_bigger_balls=False):
     """ Creates a square-formed swiss cheese manifold in d dimensions.
 
     Parameters
@@ -207,10 +207,10 @@ def d_swiss_cheese(n_points=10000, n_holes=4, d=2, noise=None, seed=None, non_ov
     centers, radiuses = generate_swiss_holes(n_holes, d)
     if non_overlapping is True:
         # Disregard overlaps
-        centers, radiuses = eliminate_overlaps(centers, radiuses)
+        centers, radiuses = eliminate_overlaps(centers, radiuses, prioritize_bigger_balls=prioritize_bigger_balls)
         while centers.shape[0] < n_holes:
             c, r = generate_swiss_holes(n_holes - centers.shape[0], d)
-            centers, radiuses = eliminate_overlaps(np.concatenate([centers,c],axis=0),np.concatenate([radiuses, r],axis=0))
+            centers, radiuses = eliminate_overlaps(np.concatenate([centers,c],axis=0),np.concatenate([radiuses, r],axis=0), prioritize_bigger_balls=prioritize_bigger_balls)
     points = points[np.apply_along_axis(in_a_hole,1,points,centers,radiuses),:]
     while points.shape[0] < n_points:
         ps = np.random.uniform(-1,1, size=((n_points-points.shape[0]), d))
