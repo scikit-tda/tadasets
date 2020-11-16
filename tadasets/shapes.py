@@ -1,8 +1,9 @@
 import numpy as np
 from .dimension import embed
 from .rotate import rotate_2D
-
-__all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign"]
+from .custom_exceptions import RotationAngleNotInRangeError
+from .swiss_holes_helpers import in_a_hole, eliminate_overlaps, generate_swiss_holes
+__all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign", "d_swiss_cheese"]
 
 
 ## TODO: Make a base class that controls `ambient` and `noise`.
@@ -185,3 +186,37 @@ def infty_sign(n=100, noise=None, angle=None, seed=None):
 
         X = rotate_2D(X, angle=angle)
     return X
+
+def d_swiss_cheese(n_points=10000, n_holes=4, d=2, noise=None, seed=None, non_overlapping=False):
+    """ Creates a square-formed swiss cheese manifold in d dimensions.
+
+    Parameters
+    ============
+
+    n_points: int
+        number of points in returned data set.
+    n_holes: int
+        number of holes in return data set.
+    d: int
+        number of dimensions
+    """
+    if seed is not None:
+        np.random.seed(seed)
+
+    points = np.random.uniform(-1,1, size=(n_points, d))
+    centers, radiuses = generate_swiss_holes(n_holes, d)
+    if non_overlapping is True:
+        # Disregard overlaps
+        centers, radiuses = eliminate_overlaps(centers, radiuses)
+        while centers.shape[0] < n_holes:
+            c, r = generate_swiss_holes(n_holes - centers.shape[0], d)
+            centers, radiuses = eliminate_overlaps(np.concatenate([centers,c],axis=0),np.concatenate([radiuses, r],axis=0))
+    points = points[np.apply_along_axis(in_a_hole,1,points,centers,radiuses),:]
+    while points.shape[0] < n_points:
+        ps = np.random.uniform(-1,1, size=((n_points-points.shape[0]), d))
+        ps = ps[np.apply_along_axis(in_a_hole,1,ps,centers,radiuses),:]
+        points = np.concatenate([points,ps],axis=0)
+
+    if noise:
+        points += noise * np.random.randn(*data.shape)
+    return points
