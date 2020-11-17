@@ -44,7 +44,7 @@ data = tadasets.sphere(n=1000, r=10)
 tadasets.plot3d(data)
 ```
 
-or 
+or
 
 ```
 import tadasets

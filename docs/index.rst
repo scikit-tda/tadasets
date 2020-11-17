@@ -57,7 +57,7 @@ To contribute please fork the project make your changes and submit a pull reques
     notebooks/Examples
 
 
- 
+
 .. |PyPI version| image:: https://badge.fury.io/py/tadasets.svg
    :target: https://badge.fury.io/py/tadasets
 .. |Travis-CI| image:: https://travis-ci.org/scikit-tda/tadasets.svg?branch=master

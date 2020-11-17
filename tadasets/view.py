@@ -9,4 +9,5 @@ def plot3d(data, fig=None, ax=None, **params):
     ax.scatter(data[:, 0], data[:, 1], data[:, 2], **params)
     return ax
 
+
 __all__ = ["plot3d"]

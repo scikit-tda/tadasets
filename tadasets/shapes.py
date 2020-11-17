@@ -5,7 +5,7 @@ from .rotate import rotate_2D
 __all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign"]
 
 
-## TODO: Make a base class that controls `ambient` and `noise`.
+# TODO: Make a base class that controls `ambient` and `noise`.
 class Shape:
     def __init__(self):
         pass
@@ -24,13 +24,13 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None, seed=None):
     ambient : int, default=None
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     seed : int, default=None
-        Seed for random state. 
+        Seed for random state.
     """
     np.random.seed(seed)
-    data = np.random.randn(n, d+1)
+    data = np.random.randn(n, d + 1)
 
     # Normalize points to the sphere
-    data = r * data / np.sqrt(np.sum(data**2, 1)[:, None])
+    data = r * data / np.sqrt(np.sum(data ** 2, 1)[:, None])
 
     if noise:
         data += noise * np.random.randn(*data.shape)
@@ -38,8 +38,6 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None, seed=None):
     if ambient:
         assert ambient > d, "Must embed in higher dimensions"
         data = embed(data, ambient)
-
-
 
     return data
 
@@ -57,7 +55,7 @@ def sphere(n=100, r=1, noise=None, ambient=None, seed=None):
     ambient : int, default=None
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     seed : int, default=None
-        Seed for random state. 
+        Seed for random state.
     """
 
     np.random.seed(seed)
@@ -70,7 +68,6 @@ def sphere(n=100, r=1, noise=None, ambient=None, seed=None):
     data[:, 0] = rad * np.cos(theta) * np.cos(phi)
     data[:, 1] = rad * np.cos(theta) * np.sin(phi)
     data[:, 2] = rad * np.sin(theta)
-
 
     if noise:
         data += noise * np.random.randn(*data.shape)
@@ -96,7 +93,7 @@ def torus(n=100, c=2, a=1, noise=None, ambient=None, seed=None):
     ambient : int, default=None
         Embed the torus into a space with ambient dimension equal to `ambient`. The torus is randomly rotated in this high dimensional space.
     seed : int, default=None
-        Seed for random state. 
+        Seed for random state.
     """
 
     assert a <= c, "That's not a torus"
@@ -131,7 +128,7 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None, seed=None):
     ambient : int, default=None
         Embed the swiss roll into a space with ambient dimension equal to `ambient`. The swiss roll is randomly rotated in this high dimensional space.
     seed : int, default=None
-        Seed for random state. 
+        Seed for random state.
 
     References
     ----------
@@ -155,6 +152,7 @@ def swiss_roll(n=100, r=10, noise=None, ambient=None, seed=None):
 
     return data
 
+
 def infty_sign(n=100, noise=None, angle=None, seed=None):
     """Construct a figure 8 or infinity sign with :code:`n` points and noise level with :code:`noise` standard deviation.
 
@@ -168,20 +166,23 @@ def infty_sign(n=100, noise=None, angle=None, seed=None):
     angle: float
         angle in radians to rotate the infinity sign.
     seed : int, default=None
-        Seed for random state. 
+        Seed for random state.
     """
 
-
     np.random.seed(seed)
-    t = np.linspace(0, 2*np.pi, n+1)[0:n]
+    t = np.linspace(0, 2 * np.pi, n + 1)[0:n]
     X = np.zeros((n, 2))
     X[:, 0] = np.cos(t)
-    X[:, 1] = np.sin(2*t)
+    X[:, 1] = np.sin(2 * t)
 
     if noise:
         X += noise * np.random.randn(n, 2)
     if angle is not None:
-        assert angle >= -np.pi and angle <= 2*np.pi, "Angle {angle} not in range. Angle should be in the range {min_angle} <= angle <= {max_angle}".format(angle=angle, min_angle="-pi", max_angle="2*pi")
+        assert (
+            angle >= -np.pi and angle <= 2 * np.pi
+        ), "Angle {angle} not in range. Angle should be in the range {min_angle} <= angle <= {max_angle}".format(
+            angle=angle, min_angle="-pi", max_angle="2*pi"
+        )
 
         X = rotate_2D(X, angle=angle)
     return X
