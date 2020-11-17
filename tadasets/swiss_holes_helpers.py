@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def in_a_hole(row, centers, radiuses):
     """Helper function.
 
@@ -13,11 +14,13 @@ def in_a_hole(row, centers, radiuses):
     radiuses: np.ndarray with shape (n_holes, )
         All the radiuses of all the holes.
     """
-    return any(np.apply_along_axis(np.linalg.norm,1,row - centers) <= radiuses) is False
+    return (
+        any(np.apply_along_axis(np.linalg.norm, 1, row - centers) <= radiuses) is False
+    )
+
 
 def eliminate_overlaps(centers, radiuses, prioritize_bigger_balls):
     """Eliminates larger overlapping circles.
-    TBD: Could probably be sped up using the miniball algorithm.
 
     Parameters
     ============
@@ -33,11 +36,15 @@ def eliminate_overlaps(centers, radiuses, prioritize_bigger_balls):
     centers = centers[inds]
     radiuses = radiuses[inds]
     remove = set()
-    for i in range(centers.shape[0]-1):
-        for j in range(i+1,centers.shape[0]):
+    for i in range(centers.shape[0] - 1):
+        for j in range(i + 1, centers.shape[0]):
             if np.linalg.norm(centers[i] - centers[j]) <= (radiuses[i] + radiuses[j]):
                 remove.add(j)
-    return centers[[i for i in range(centers.shape[0]) if i not in remove]], radiuses[[i for i in range(centers.shape[0]) if i not in remove]]
+    return (
+        centers[[i for i in range(centers.shape[0]) if i not in remove]],
+        radiuses[[i for i in range(centers.shape[0]) if i not in remove]],
+    )
+
 
 def generate_swiss_holes(n_holes, d):
     """ Generates Swiss Cheese Holes
@@ -51,6 +58,10 @@ def generate_swiss_holes(n_holes, d):
     """
     # Sample radiuses from a log-uniform distribution
     # Log uniform to ensure sizes vary reasonably
-    radiuses = np.exp(np.random.uniform(np.log(0.2),np.log(0.5),size=n_holes))
-    centers = np.random.uniform(-1,1,size=(n_holes,d))
+    radiuses = np.exp(
+        np.random.uniform(
+            np.log(0.2 * np.sqrt(d / 2)), np.log(0.5 * np.sqrt(d / 2)), size=n_holes
+        )
+    )
+    centers = np.random.uniform(-1, 1, size=(n_holes, d))
     return centers, radiuses

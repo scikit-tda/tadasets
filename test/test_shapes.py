@@ -3,8 +3,10 @@ import pytest
 import tadasets
 from scipy.spatial.distance import pdist
 
+
 def norm(p):
-    return np.sum(p**2)**0.5
+    return np.sum(p ** 2) ** 0.5
+
 
 class TestEmbedding:
     def test_shape(self):
@@ -39,8 +41,8 @@ class TestSphere:
         r = 23
         s = tadasets.sphere(r=r)
         rs = np.fromiter((norm(p) for p in s), np.float64)
-        assert np.all(rs <= r+1e-5)
-        assert np.all([r-1e-5 <= rx <= r+1e-5 for rx in rs])
+        assert np.all(rs <= r + 1e-5)
+        assert np.all([r - 1e-5 <= rx <= r + 1e-5 for rx in rs])
 
     def test_ambient(self):
         s = tadasets.sphere(n=200, r=3, ambient=15)
@@ -55,12 +57,12 @@ class TestDsphere:
     def test_equivalence(self):
         s = tadasets.dsphere(n=100, d=2)
         rs = np.fromiter((norm(p) for p in s), np.float64)
-        assert np.all([1-1e-5 <= r <= 1+1e-5 for r in rs])
+        assert np.all([1 - 1e-5 <= r <= 1 + 1e-5 for r in rs])
 
     def test_r(self):
         s = tadasets.dsphere(n=100, d=2, r=4)
         rs = np.fromiter((norm(p) for p in s), np.float64)
-        assert np.all([4-1e-5 <= r <= 4+1e-5 for r in rs])
+        assert np.all([4 - 1e-5 <= r <= 4 + 1e-5 for r in rs])
 
 
 class TestTorus:
@@ -105,12 +107,13 @@ class TestSwissCheese:
         assert t.shape[0] == 345
 
     def test_plt(self):
-        t = tadasets.d_swiss_cheese(n_points=345, d = 3)
+        t = tadasets.d_swiss_cheese(n_points=345, d=3)
         tadasets.plot3d(t)
 
     def test_ambient(self):
         s = tadasets.d_swiss_cheese(n_points=200, d=15)
         assert s.shape == (200, 15)
+
 
 class TestInfty:
     def test_n(self):

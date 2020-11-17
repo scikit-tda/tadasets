@@ -10,7 +10,7 @@ def from_mesh(vertices, triangles, n=1000):
     """
     Randomly sample points by area on a triangle mesh.  This function is
     extremely fast by using broadcasting/numpy operations in lieu of loops
-    
+
     Inputs
     -------
     vertices : ndarray (N, 3)

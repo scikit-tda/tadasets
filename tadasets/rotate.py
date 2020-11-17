@@ -1,11 +1,13 @@
 import numpy as np
 
+
 def get_phi(row):
     """Helper function for rotating data.
 
     row: 2D-entry in matrix with shape (?, 2)
     """
     return np.arctan2(row[0], row[1])
+
 
 def rotate_2D(d, angle):
     """Rotate a 2-dimensional figure.
@@ -20,9 +22,11 @@ def rotate_2D(d, angle):
     try:
         assert d.shape[1] == 2
     except AssertionError:
-        raise ValueError("Error: data has {} dimensions, but should only be 2. ".format(d.shape[1]))
+        raise ValueError(
+            "Error: data has {} dimensions, but should only be 2. ".format(d.shape[1])
+        )
 
-    rot = angle - np.pi/2
+    rot = angle - np.pi / 2
     phis = np.apply_along_axis(get_phi, 1, d)
     phi_new = phis + rot
     r = np.sqrt(d[:, 0] ** 2 + d[:, 1] ** 2)
