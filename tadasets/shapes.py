@@ -165,7 +165,7 @@ def infty_sign(n=100, noise=None, angle=None, seed=None):
         standard deviation of normally distributed noise added to data.
     angle: float
         angle in radians to rotate the infinity sign.
-    seed : int, default=None
+    seed : int
         Seed for random state.
     """
 
