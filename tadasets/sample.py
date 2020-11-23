@@ -55,7 +55,7 @@ def from_mesh(vertices, triangles, n=1000):
     FNormals = FNormals / FAreas[:, None]
     FAreas = 0.5 * FAreas
     FNormals = FNormals
-    VNormals = np.zeros_like(vertices)
+    # VNormals = np.zeros_like(vertices)
     VAreas = np.zeros(vertices.shape[0])
     for k in range(3):
         # VNormals[triangles[:, k], :] += FAreas[:, None] * FNormals
@@ -65,7 +65,7 @@ def from_mesh(vertices, triangles, n=1000):
     VAreas[VAreas == 0] = 1
     # VNormals = VNormals / VAreas[:, None]
 
-    ###Step 2: Randomly sample points based on areas
+    # Step 2: Randomly sample points based on areas
     FAreas = FAreas / np.sum(FAreas)
     AreasC = np.cumsum(FAreas)
     samples = np.sort(np.random.rand(n))
@@ -84,7 +84,7 @@ def from_mesh(vertices, triangles, n=1000):
     for i in range(len(FSamples)):
         tidx[idx : idx + FSamples[i]] = i
         idx += FSamples[i]
-    N = np.zeros((n, 3))  # Allocate space for normals
+    # N = np.zeros((n, 3))  # Allocate space for normals
     idx = 0
 
     # Vector used to determine if points need to be flipped across parallelogram

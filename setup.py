@@ -34,7 +34,7 @@ setup(
         "testing": ["pytest", "scipy"],
         "docs": ["sktda_docs_config"],  # `pip install -e ".[docs]"``
     },
-    install_requires=["numpy", "matplotlib",],
+    install_requires=["numpy", "matplotlib"],
     python_requires=">=2.7,!=3.1,!=3.2,!=3.3",
     classifiers=[
         "Development Status :: 3 - Alpha",

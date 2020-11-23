@@ -109,7 +109,9 @@ class TestInfty:
     def test_rotation(self):
         with pytest.raises(AssertionError) as ae:
             t = tadasets.infty_sign(n=345, angle=-100)
+            assert ae is not None
         with pytest.raises(AssertionError) as ae:
             t = tadasets.infty_sign(n=345, angle=300)
+            assert ae is not None
         t = tadasets.infty_sign(n=345, angle=2)
         assert t.shape[0] == 345
