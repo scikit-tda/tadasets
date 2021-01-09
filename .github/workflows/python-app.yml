@@ -35,7 +35,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest --cov kmapper
+        pytest --cov tadasets
     - name: Upload coverage results
       run: |
         bash <(curl -s https://codecov.io/bash)
