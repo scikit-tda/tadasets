@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 
-|PyPI version| |Travis-CI| |Codecov| |License: MIT|
+|PyPI version| |Downloads| |License: MIT| |Travis-CI| |Codecov| 
 
 This package provides some nice utilities for creating and loading data sets that are useful for Topological Data Analysis. Currently, we provide various synthetic data sets with particular topological features.
 
@@ -12,7 +12,7 @@ This package provides some nice utilities for creating and loading data sets tha
 Setup
 ------
 
-Installation requires Cython, and currently must be installed from source. An example of how to install is
+Installation is as easy as
 
 .. code:: python
 
@@ -45,7 +45,10 @@ Contributions
 
 We welcome contributions of all shapes and sizes. There are lots of opportunities for potential projects, so please get in touch if you would like to help out. Everything from an implementation of your favorite distance, notebooks, examples, and documentation are all equally valuable so please don’t feel you can’t contribute.
 
+If you have ideas for new shapes or features, please do suggest them in an issue and submit a pull request! 
+
 To contribute please fork the project make your changes and submit a pull request. We will do our best to work through any issues with you and get your code merged into the main branch.
+
 
 
 .. toctree::
@@ -56,8 +59,8 @@ To contribute please fork the project make your changes and submit a pull reques
     reference/index
     notebooks/Examples
 
-
-
+.. |Downloads| image:: https://pypip.in/download/tadasets/badge.svg
+   :target: https://pypi.python.org/tadasets/
 .. |PyPI version| image:: https://badge.fury.io/py/tadasets.svg
    :target: https://badge.fury.io/py/tadasets
 .. |Travis-CI| image:: https://travis-ci.org/scikit-tda/tadasets.svg?branch=master

@@ -1,57 +1,48 @@
 [![PyPI version](https://badge.fury.io/py/tadasets.svg)](https://badge.fury.io/py/tadasets)
+[![Downloads](https://pypip.in/download/tadasets/badge.svg)](https://pypi.python.org/tadasets/)
 [![Build Status](https://travis-ci.org/scikit-tda/tadasets.svg?branch=master)](https://travis-ci.org/scikit-tda/tadasets)
 [![Codecov](https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg)](https://codecov.io/gh/scikit-tda/tadasets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-# TaDAsets
-Data sets apt for Topological Data Analysis. This project is a part of scikit-tda.
+This package provides some nice utilities for creating and loading data sets that are useful for Topological Data Analysis. Currently, we provide various synthetic data sets with particular topological features.
 
-## Motivation
 
-At SoCG 2018, there was discussion about the need for data sets for two main purposes
-- Benchmarking new algorithms
-- Demonstrating benefits of TDA
+# Setup
 
-## Data generation
+Installation is as easy as
 
-We provide constructors for some synthetic data sets that are popular in development and testing of TDA techniques.
-
-* Torus
-* Klein Bottle
-* Swiss Roll
-
-## Setup and Usage
-
-You can install from Pypi
 ```
 pip install tadasets
 ```
 
-or from source
+# Usage
 
-```
-git clone https://github.com/scikit-tda/tadasets
-cd tadasets
-pip install -e .
-```
+The shape constructors are exposed in a functional interface, each returning a numpy array containing data sampled on the object. Available objects include
 
-Examples of usage is
+- torus
+- d-sphere
+- swiss roll
+- infinity sign
 
-```
-import tadasets
-data = tadasets.sphere(n=1000, r=10)
-tadasets.plot3d(data)
-```
-
-or
+Each shape can be embedded in arbitrary ambient dimension by supplying the `ambient` argument. Additionally, noise can be added to the shape through the `noise` argument.
 
 ```
 import tadasets
-data = tadasets.swiss_roll(n=1000, r=10)
-tadasets.plot3d(data)
+
+torus = tadasets.torus(n=2000, c=2, a=1, ambient=200, noise=0.2)
+swiss_roll = tadasets.swiss_roll(n=2000, r=4, ambient=10, noise=1.2)
+dsphere = tadasets.dsphere(n=1000, d=12, r=3.14, ambient=14, noise=0.14)
+infty_sign = tadasets.infty_sign(n=3000, noise=0.1)
 ```
 
-## Contributions
+Contributions
+------------------
 
-This package is in the very early stages of development. As I think of shapes and data sets, I add them.  If you have ideas, please do suggest them in an issue and submit a pull request! All contributions are welcome.
+We welcome contributions of all shapes and sizes. There are lots of opportunities for potential projects, so please get in touch if you would like to help out. Everything from an implementation of your favorite distance, notebooks, examples, and documentation are all equally valuable so please don’t feel you can’t contribute.
+
+If you have ideas for new shapes or features, please do suggest them in an issue and submit a pull request! 
+
+To contribute please fork the project make your changes and submit a pull request. We will do our best to work through any issues with you and get your code merged into the main branch.
+
+
