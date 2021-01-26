@@ -18,7 +18,7 @@ twine upload dist/*
 ```
 
 4. Check [pypi.python.org](pypi.python.org) that the new version is present.
-5. Increment version number and give `.dev` tag. 
+5. Increment version number and give `.dev` tag.
 
 
 # Notes

@@ -10,5 +10,3 @@ API Reference
     tadasets.sphere
     tadasets.swiss_roll
     tadasets.infty_sign
-
-
