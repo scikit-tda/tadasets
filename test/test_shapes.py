@@ -115,3 +115,22 @@ class TestInfty:
             assert ae is not None
         t = tadasets.infty_sign(n=345, angle=2)
         assert t.shape[0] == 345
+
+
+class TestEyeglasses:
+    def test_n(self):
+        t = tadasets.eyeglasses(n=345, r1=1, r2=2, neck_size=.8)
+        assert t.shape[0] == 345
+
+    def test_neck(self):
+        t = tadasets.eyeglasses(n=5000, r1=1, r2=2, neck_size=.8)
+        top, bottom = t[t[:, 1] > 0], t[t[:, 1] < 0]
+        y_neck_top = top[np.abs(top[:, 0]).argmin(), 1]
+        y_neck_bottom = bottom[np.abs(bottom[:, 0]).argmin(), 1]
+        assert np.abs(y_neck_top - y_neck_bottom - .8) <= .001
+
+    def test_r(self):
+        t = tadasets.eyeglasses(n=5000, r1=1, r2=2, neck_size=.8)
+        left, right = t[t[:, 0] < 0], t[t[:, 0] > 0]
+        assert np.abs(left[:, 1].max() - 1) <= .001
+        assert np.abs(right[:, 1].max() - 2) <= .001
