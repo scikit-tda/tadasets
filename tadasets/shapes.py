@@ -2,7 +2,7 @@ import numpy as np
 from .dimension import embed
 from .rotate import rotate_2D
 
-__all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign"]
+__all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign", "eyeglasses"]
 
 
 # TODO: Make a base class that controls `ambient` and `noise`.
@@ -186,3 +186,79 @@ def infty_sign(n=100, noise=None, angle=None, seed=None):
 
         X = rotate_2D(X, angle=angle)
     return X
+
+
+def eyeglasses(n=100, r1=1, r2=None, neck_size=None, noise=None, ambient=None, seed=None):
+    """Sample `n` points on an eyeglasses shape.
+
+    Parameters
+    ----------
+    n : int, default=100
+        Number of points in shape
+    r1 : float, default=1
+        The radius of the left half of the eyeglasses shape
+    r2 : float, default=None
+        The radius of the right half. If None, it is equal to `r1`.
+    neck_size : float, default=None
+        The width of the neck.
+    noise : float, default=None
+        Standard deviation of normally distributed noise added to data.
+    ambient : int, default=None
+        Embed the eyeglasses shape into a space with ambient dimension equal to `ambient`.
+        The eyeglasses shape is randomly rotated in this high dimensional space.
+    seed : int
+        Seed for random state.
+    """
+    np.random.seed(seed)
+
+    if r2 is None:
+        r2 = r1
+    if neck_size is None:
+        neck_size = min(r1, r2)
+
+    assert neck_size < 2 * min(r1, r2), 'Neck should be smaller than 2*min(r1,r2).'
+    half_neck = neck_size / 2
+
+    r_neck = min(r1, r2)
+
+    x_left = ((r_neck + r1) ** 2 - (r_neck + half_neck) ** 2) ** (1 / 2) - r1  # x distance from left circle to neck
+    x_right = ((r_neck + r2) ** 2 - (r_neck + half_neck) ** 2) ** (1 / 2) - r2
+
+    alpha_1 = np.arcsin((r_neck + half_neck) / (r1 + r_neck))
+    alpha_2 = np.arcsin((r_neck + half_neck) / (r2 + r_neck))
+
+    centers = {'l': [-r1 - x_left, 0],
+               'r': [x_right + r2, 0],
+               't': [0, half_neck + r_neck],
+               'b': [0, -half_neck - r_neck]}
+
+    radii = {'l': r1, 'r': r2, 't': r_neck, 'b': r_neck}
+
+    angle_ranges = {'l': [alpha_1, 2 * np.pi - alpha_1],
+                    'r': [-np.pi + alpha_2, np.pi - alpha_2],
+                    't': [np.pi + alpha_1, 2 * np.pi - alpha_2],
+                    'b': [alpha_2, np.pi - alpha_1]}
+
+    # compute how many points each circle will contain.
+    arc_lens = {x: (angle_ranges[x][1] - angle_ranges[x][0]) * radii[x] for x in ['l', 'r', 't', 'b']}
+    total_arc_len = sum(arc_lens.values())
+    probabilities = {x: arc_lens[x] / total_arc_len for x in ['l', 'r', 't', 'b']}
+    positions = np.random.choice(['l', 'r', 't', 'b'], p=list(probabilities.values()), size=n)
+    positions, counts = np.unique(positions, return_counts=True)
+    counts = {x: c for x, c in zip(positions, counts)}
+
+    data = []
+    for x in ['l', 'r', 't', 'b']:
+        angles = np.random.uniform(size=counts[x], low=angle_ranges[x][0], high=angle_ranges[x][1])
+        points = np.vstack((radii[x] * np.cos(angles), radii[x] * np.sin(angles))).T + centers[x]
+        data.append(points)
+
+    data = np.concatenate(data)
+
+    if noise:
+        data += noise * np.random.randn(n, 2)
+
+    if ambient:
+        data = embed(data, ambient)
+
+    return data

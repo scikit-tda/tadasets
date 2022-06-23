@@ -24,6 +24,7 @@ The shape constructors are exposed in a functional interface, each returning a n
 - d-sphere
 - swiss roll
 - infinity sign
+- eyeglasses
 
 Each shape can be embedded in arbitrary ambient dimension by supplying the `ambient` argument. Additionally, noise can be added to the shape through the `noise` argument.
 
@@ -34,6 +35,7 @@ torus = tadasets.torus(n=2000, c=2, a=1, ambient=200, noise=0.2)
 swiss_roll = tadasets.swiss_roll(n=2000, r=4, ambient=10, noise=1.2)
 dsphere = tadasets.dsphere(n=1000, d=12, r=3.14, ambient=14, noise=0.14)
 infty_sign = tadasets.infty_sign(n=3000, noise=0.1)
+eyeglasses = tadasets.eyeglasses(n=1000, r1=1, r2=2, neck_size=.5, noise=0.1, ambient=10)
 ```
 
 Contributions
