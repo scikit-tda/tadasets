@@ -1,6 +1,7 @@
 import numpy as np
 from .dimension import embed
 from .rotate import rotate_2D
+from typing import Optional
 
 __all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign", "eyeglasses"]
 
@@ -15,9 +16,9 @@ def dsphere(
     n: int = 100,
     d: int = 2,
     r: float = 1,
-    noise: float = None,
-    ambient: int = None,
-    seed: int = None,
+    noise: Optional[float] = None,
+    ambient: Optional[int] = None,
+    seed: Optional[int] = None,
 ) -> np.ndarray:
     """
     Sample ``n`` data points on a ``d``-sphere.
@@ -62,9 +63,9 @@ def dsphere(
 def sphere(
     n: int = 100,
     r: float = 1.0,
-    noise: float | None = None,
-    ambient: int | None = None,
-    seed: int | None = None,
+    noise: Optional[float] = None,
+    ambient: Optional[int] = None,
+    seed: Optional[int] = None,
 ) -> np.ndarray:
     """
         Sample ``n`` data points on a sphere.
