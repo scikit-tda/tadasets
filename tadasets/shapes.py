@@ -267,7 +267,7 @@ def eyeglasses(
     ambient: Optional[int] = None,
     seed: Optional[float] = None,
 ) -> np.ndarray:
-    """Sample `n` points on an eyeglasses shape.
+    """Sample ``n`` points on an eyeglasses shape.
 
     Parameters
     ----------
