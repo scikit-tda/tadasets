@@ -11,7 +11,14 @@ class Shape:
         pass
 
 
-def dsphere(n=100, d=2, r=1, noise=None, ambient=None, seed=None):
+def dsphere(
+    n: int = 100,
+    d: int = 2,
+    r: float = 1,
+    noise: float = None,
+    ambient: int = None,
+    seed: int = None,
+) -> np.ndarray:
     """
     Sample `n` data points on a d-sphere.
 
@@ -29,6 +36,12 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None, seed=None):
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     seed : int, optional
         Seed for random state.
+
+    Returns
+    -------
+    data : np.ndarray
+        Returns ``(n,ambient)`` np.ndarray if ``ambient`` specifed or
+        a `(n,d+1)` np.ndarray otherwise.
     """
     np.random.seed(seed)
     data = np.random.randn(n, d + 1)
