@@ -20,7 +20,7 @@ def dsphere(
     seed: int = None,
 ) -> np.ndarray:
     """
-    Sample `n` data points on a d-sphere.
+    Sample ``n`` data points on a ``d``-sphere.
 
     Parameters
     -----------
@@ -40,8 +40,8 @@ def dsphere(
     Returns
     -------
     data : np.ndarray
-        Returns ``(n,ambient)`` np.ndarray if ``ambient`` specifed or
-        a `(n,d+1)` np.ndarray otherwise.
+        An ``(n,ambient)`` np.ndarray if ``ambient`` is specifed or
+        a ``(n,d+1)`` np.ndarray otherwise.
     """
     np.random.seed(seed)
     data = np.random.randn(n, d + 1)
