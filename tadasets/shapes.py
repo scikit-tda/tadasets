@@ -59,9 +59,15 @@ def dsphere(
     return data
 
 
-def sphere(n=100, r=1, noise=None, ambient=None, seed=None):
+def sphere(
+    n: int = 100,
+    r: float = 1.0,
+    noise: float | None = None,
+    ambient: int | None = None,
+    seed: int | None = None,
+) -> np.ndarray:
     """
-        Sample `n` data points on a sphere.
+        Sample ``n`` data points on a sphere.
 
     Parameters
     -----------
@@ -75,6 +81,11 @@ def sphere(n=100, r=1, noise=None, ambient=None, seed=None):
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     seed : int, optional
         Seed for random state.
+
+    Returns
+    -------
+    data : np.ndarray
+        An ``(n,3)`` np.ndarray.
     """
 
     np.random.seed(seed)
@@ -97,9 +108,9 @@ def sphere(n=100, r=1, noise=None, ambient=None, seed=None):
     return data
 
 
-def torus(n=100, c=2.0, a=1.0, noise=None, ambient=None, seed=None):
+def torus(n=100, c=2.0, a=1.0, noise=None, ambient=None, seed=None) -> np.ndarray:
     """
-    Sample `n` data points on a torus.
+    Sample ``n`` data points on a torus.
 
     Parameters
     -----------
@@ -115,6 +126,11 @@ def torus(n=100, c=2.0, a=1.0, noise=None, ambient=None, seed=None):
         Embed the torus into a space with ambient dimension equal to `ambient`. The torus is randomly rotated in this high dimensional space.
     seed : int, optional
         Seed for random state.
+
+    Returns
+    -------
+    data : np.ndarray
+        An ``(n,3)`` np.ndarray.
     """
 
     assert a <= c, "That's not a torus"
@@ -137,7 +153,7 @@ def torus(n=100, c=2.0, a=1.0, noise=None, ambient=None, seed=None):
     return data
 
 
-def swiss_roll(n=100, r=10.0, noise=None, ambient=None, seed=None):
+def swiss_roll(n=100, r=10.0, noise=None, ambient=None, seed=None) -> np.ndarray:
     """
     Sample `n` data points from a Swiss roll.
 
@@ -157,6 +173,11 @@ def swiss_roll(n=100, r=10.0, noise=None, ambient=None, seed=None):
     References
     ----------
     Equations mimic [Swiss Roll and SNE by jlmelville](https://jlmelville.github.io/smallvis/swisssne.html)
+
+    Returns
+    -------
+    data : np.ndarray
+        An ``(n,3)`` np.ndarray.
     """
 
     np.random.seed(seed)
@@ -177,7 +198,7 @@ def swiss_roll(n=100, r=10.0, noise=None, ambient=None, seed=None):
     return data
 
 
-def infty_sign(n=100, noise=None, angle=None, seed=None):
+def infty_sign(n=100, noise=None, angle=None, seed=None) -> np.ndarray:
     """
     Construct a figure 8 or infinity sign with ``n`` points and noise level with ``noise`` standard deviation.
 
@@ -192,6 +213,11 @@ def infty_sign(n=100, noise=None, angle=None, seed=None):
         Angle in radians to rotate the infinity sign.
     seed : int, optional
         Seed for random state.
+
+    Returns
+    -------
+    data : np.ndarray
+        An ``(n,2)`` np.ndarray.
     """
 
     np.random.seed(seed)
@@ -215,7 +241,7 @@ def infty_sign(n=100, noise=None, angle=None, seed=None):
 
 def eyeglasses(
     n=100, r1=1.0, r2=None, neck_size=None, noise=None, ambient=None, seed=None
-):
+) -> np.ndarray:
     """Sample `n` points on an eyeglasses shape.
 
     Parameters
@@ -235,6 +261,12 @@ def eyeglasses(
         The eyeglasses shape is randomly rotated in this high dimensional space.
     seed : int, optional
         Seed for random state.
+
+    Returns
+    -------
+    data : np.ndarray
+        An ``(n,ambient)`` np.ndarray if ``ambient`` is specified or
+        an ``(n,2)`` np.ndarray otherwise.
     """
     np.random.seed(seed)
 
