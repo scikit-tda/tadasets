@@ -109,7 +109,14 @@ def sphere(
     return data
 
 
-def torus(n=100, c=2.0, a=1.0, noise=None, ambient=None, seed=None) -> np.ndarray:
+def torus(
+    n: int = 100,
+    c: float = 2.0,
+    a: float = 1.0,
+    noise: Optional[float] = None,
+    ambient: Optional[int] = None,
+    seed: Optional[int] = None,
+) -> np.ndarray:
     """
     Sample ``n`` data points on a torus.
 
@@ -154,7 +161,13 @@ def torus(n=100, c=2.0, a=1.0, noise=None, ambient=None, seed=None) -> np.ndarra
     return data
 
 
-def swiss_roll(n=100, r=10.0, noise=None, ambient=None, seed=None) -> np.ndarray:
+def swiss_roll(
+    n: int = 100,
+    r: float = 10.0,
+    noise: Optional[float] = None,
+    ambient: Optional[int] = None,
+    seed: Optional[int] = None,
+) -> np.ndarray:
     """
     Sample `n` data points from a Swiss roll.
 
@@ -199,7 +212,12 @@ def swiss_roll(n=100, r=10.0, noise=None, ambient=None, seed=None) -> np.ndarray
     return data
 
 
-def infty_sign(n=100, noise=None, angle=None, seed=None) -> np.ndarray:
+def infty_sign(
+    n: int = 100,
+    noise: Optional[float] = None,
+    angle: Optional[float] = None,
+    seed: Optional[int] = None,
+) -> np.ndarray:
     """
     Construct a figure 8 or infinity sign with ``n`` points and noise level with ``noise`` standard deviation.
 
@@ -241,7 +259,13 @@ def infty_sign(n=100, noise=None, angle=None, seed=None) -> np.ndarray:
 
 
 def eyeglasses(
-    n=100, r1=1.0, r2=None, neck_size=None, noise=None, ambient=None, seed=None
+    n: int = 100,
+    r1: float = 1.0,
+    r2: Optional[float] = None,
+    neck_size: Optional[float] = None,
+    noise: Optional[float] = None,
+    ambient: Optional[int] = None,
+    seed: Optional[float] = None,
 ) -> np.ndarray:
     """Sample `n` points on an eyeglasses shape.
 
