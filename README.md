@@ -1,12 +1,11 @@
 [![PyPI version](https://badge.fury.io/py/tadasets.svg)](https://badge.fury.io/py/tadasets)
-[![Downloads](https://pypip.in/download/tadasets/badge.svg)](https://pypi.python.org/tadasets/)
-[![Build Status](https://travis-ci.org/scikit-tda/tadasets.svg?branch=master)](https://travis-ci.org/scikit-tda/tadasets)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/tadasets)
 [![Codecov](https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg)](https://codecov.io/gh/scikit-tda/tadasets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
-This package provides some nice utilities for creating and loading data sets that are useful for Topological Data Analysis. Currently, we provide various synthetic data sets with particular topological features.
-
+This package provides some nice utilities for creating and loading data sets
+that are useful for Topological Data Analysis. Currently, we provide various
+synthetic data sets with particular topological features.
 
 # Setup
 
@@ -28,7 +27,7 @@ The shape constructors are exposed in a functional interface, each returning a n
 
 Each shape can be embedded in arbitrary ambient dimension by supplying the `ambient` argument. Additionally, noise can be added to the shape through the `noise` argument.
 
-```
+```python
 import tadasets
 
 torus = tadasets.torus(n=2000, c=2, a=1, ambient=200, noise=0.2)
@@ -38,13 +37,10 @@ infty_sign = tadasets.infty_sign(n=3000, noise=0.1)
 eyeglasses = tadasets.eyeglasses(n=1000, r1=1, r2=2, neck_size=.5, noise=0.1, ambient=10)
 ```
 
-Contributions
-------------------
+## Contributions
 
 We welcome contributions of all shapes and sizes. There are lots of opportunities for potential projects, so please get in touch if you would like to help out. Everything from an implementation of your favorite distance, notebooks, examples, and documentation are all equally valuable so please don’t feel you can’t contribute.
 
-If you have ideas for new shapes or features, please do suggest them in an issue and submit a pull request! 
+If you have ideas for new shapes or features, please do suggest them in an issue and submit a pull request!
 
 To contribute please fork the project make your changes and submit a pull request. We will do our best to work through any issues with you and get your code merged into the main branch.
-
-

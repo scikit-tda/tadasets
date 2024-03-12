@@ -1,10 +1,4 @@
-.. tadasets documentation master file, created by
-   sphinx-quickstart on Sun Jul 22 20:37:23 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-
-|PyPI version| |Downloads| |License: MIT| |Travis-CI| |Codecov| 
+|PyPI version| |Downloads| |Codecov| |License: MIT|
 
 This package provides some nice utilities for creating and loading data sets that are useful for Topological Data Analysis. Currently, we provide various synthetic data sets with particular topological features.
 
@@ -59,12 +53,10 @@ To contribute please fork the project make your changes and submit a pull reques
     reference/index
     notebooks/Examples
 
-.. |Downloads| image:: https://pypip.in/download/tadasets/badge.svg
+.. |Downloads| image:: https://img.shields.io/pypi/dm/tadasets
    :target: https://pypi.python.org/tadasets/
 .. |PyPI version| image:: https://badge.fury.io/py/tadasets.svg
    :target: https://badge.fury.io/py/tadasets
-.. |Travis-CI| image:: https://travis-ci.org/scikit-tda/tadasets.svg?branch=master
-    :target: https://travis-ci.org/scikit-tda/tadasets
 .. |Codecov| image:: https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/scikit-tda/tadasets
 .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
