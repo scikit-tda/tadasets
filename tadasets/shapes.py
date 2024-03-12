@@ -186,7 +186,7 @@ def swiss_roll(
 
     References
     ----------
-    Equations mimic [Swiss Roll and SNE by jlmelville](https://jlmelville.github.io/smallvis/swisssne.html)
+    Equations mimic `Swiss Roll and SNE by jlmelville https://jlmelville.github.io/smallvis/swisssne.html`_.
 
     Returns
     -------
