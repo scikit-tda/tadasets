@@ -1,10 +1,4 @@
-.. tadasets documentation master file, created by
-   sphinx-quickstart on Sun Jul 22 20:37:23 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-
-|PyPI version| |Downloads| |License: MIT| |Travis-CI| |Codecov| 
+|PyPI version| |Downloads| |Codecov| |License: MIT|
 
 This package provides some nice utilities for creating and loading data sets that are useful for Topological Data Analysis. Currently, we provide various synthetic data sets with particular topological features.
 
@@ -26,8 +20,10 @@ The shape constructors are exposed in a functional interface, each returning a n
 
 - torus
 - d-sphere
+- sphere
 - swiss roll
 - infinity sign
+- eyeglasses
 
 Each shape can be embedded in arbitrary ambient dimension by supplying the :code:`ambient` argument. Additionally, noise can be added to the shape through the :code:`noise` argument.
 
@@ -38,7 +34,9 @@ Each shape can be embedded in arbitrary ambient dimension by supplying the :code
     torus = tadasets.torus(n=2000, c=2, a=1, ambient=200, noise=0.2)
     swiss_roll = tadasets.swiss_roll(n=2000, r=4, ambient=10, noise=1.2)
     dsphere = tadasets.dsphere(n=1000, d=12, r=3.14, ambient=14, noise=0.14)
+    sphere = tadasets.sphere(n=500,seed=42)
     infty_sign = tadasets.infty_sign(n=3000, noise=0.1)
+    eyeglasses = tadasets.eyeglasses(n=670,r1=10.0,r2=5.0)
 
 Contributions
 ------------------
@@ -59,12 +57,10 @@ To contribute please fork the project make your changes and submit a pull reques
     reference/index
     notebooks/Examples
 
-.. |Downloads| image:: https://pypip.in/download/tadasets/badge.svg
+.. |Downloads| image:: https://img.shields.io/pypi/dm/tadasets
    :target: https://pypi.python.org/tadasets/
 .. |PyPI version| image:: https://badge.fury.io/py/tadasets.svg
    :target: https://badge.fury.io/py/tadasets
-.. |Travis-CI| image:: https://travis-ci.org/scikit-tda/tadasets.svg?branch=master
-    :target: https://travis-ci.org/scikit-tda/tadasets
 .. |Codecov| image:: https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/scikit-tda/tadasets
 .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
