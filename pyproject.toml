@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tadasets"
+dynamic = ["version"]
+description = "Great data sets for Topological Data Analysis."
+readme = "README.md"
+authors = [
+  { name = "Nathaniel Saul", email = "nat@riverasaul.com" },
+  { name = "Chris Tralie", email = "chris.tralie@gmail.com" },
+  { name = "Filip Cornell", email = "c.filip.cornell@gmail.com" },
+  { name = "Michael Catanzaro", email = "catanzaromj@pm.me" },
+]
+maintainers = [
+  { name = "Nathaniel Saul", email = "nat@riverasaul.com" },
+  { name = "Chris Tralie", email = "chris.tralie@gmail.com" },
+  { name = "Michael Catanzaro", email = "catanzaromj@pm.me" },
+]
+
+dependencies = ["matplotlib", "numpy"]
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Education",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Intended Audience :: Healthcare Industry",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+]
+
+
+keywords = [
+  "topological data analysis",
+  "data sets",
+  "test data",
+  "algebraic topology",
+]
+
+[project.optional-dependencies]
+testing = ["pytest", "pytest-cov", "scipy"]
+
+docs = ["sktda_docs_config"]
+
+[project.urls]
+Homepage = "https://tadasets.scikit-tda.org"
+Documentation = "https://tadasets.scikit-tda.org"
+Repository = "https://github.com/scikit-tda/tadasets"
+Issues = "https://github.com/scikit-tda/tadasets/issues"
+Changelog = "https://github.com/scikit-tda/persim/blob/master/RELEASE.txt"
