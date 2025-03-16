@@ -5,7 +5,7 @@ from scipy.spatial.distance import pdist
 
 
 def norm(p):
-    return np.sum(p ** 2) ** 0.5
+    return np.sum(p**2) ** 0.5
 
 
 class TestEmbedding:
@@ -15,7 +15,7 @@ class TestEmbedding:
         assert d_emb.shape == (100, 10)
 
     def test_rotated(self):
-        """ No variables should be all zero.
+        """No variables should be all zero.
         Nonzero variance implies some transformation happened.
         """
         d = np.random.random((100, 3))
@@ -119,18 +119,18 @@ class TestInfty:
 
 class TestEyeglasses:
     def test_n(self):
-        t = tadasets.eyeglasses(n=345, r1=1, r2=2, neck_size=.8)
+        t = tadasets.eyeglasses(n=345, r1=1, r2=2, neck_size=0.8)
         assert t.shape[0] == 345
 
     def test_neck(self):
-        t = tadasets.eyeglasses(n=5000, r1=1, r2=2, neck_size=.8)
+        t = tadasets.eyeglasses(n=5000, r1=1, r2=2, neck_size=0.8)
         top, bottom = t[t[:, 1] > 0], t[t[:, 1] < 0]
         y_neck_top = top[np.abs(top[:, 0]).argmin(), 1]
         y_neck_bottom = bottom[np.abs(bottom[:, 0]).argmin(), 1]
-        assert np.abs(y_neck_top - y_neck_bottom - .8) <= .001
+        assert np.abs(y_neck_top - y_neck_bottom - 0.8) <= 0.001
 
     def test_r(self):
-        t = tadasets.eyeglasses(n=5000, r1=1, r2=2, neck_size=.8)
+        t = tadasets.eyeglasses(n=5000, r1=1, r2=2, neck_size=0.8)
         left, right = t[t[:, 0] < 0], t[t[:, 0] > 0]
-        assert np.abs(left[:, 1].max() - 1) <= .001
-        assert np.abs(right[:, 1].max() - 2) <= .001
+        assert np.abs(left[:, 1].max() - 1) <= 0.001
+        assert np.abs(right[:, 1].max() - 2) <= 0.001

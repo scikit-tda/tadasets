@@ -6,7 +6,6 @@ from tadasets.sample import from_mesh
 
 class TestMeshSampler:
     def test_unit_square(self):
-
         vertices = np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 0]])
 
         tris = np.array([[0, 1, 2], [1, 2, 3]])
