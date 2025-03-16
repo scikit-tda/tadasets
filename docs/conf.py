@@ -7,9 +7,9 @@ sys.path.insert(0, os.path.abspath("."))
 from tadasets import __version__
 from sktda_docs_config import *
 
-project = u"TaDAsets"
-copyright = u"2018, Nathaniel Saul"
-author = u"Nathaniel Saul"
+project = "TaDAsets"
+copyright = "2018, Nathaniel Saul"
+author = "Nathaniel Saul"
 
 version = __version__
 release = __version__
@@ -28,7 +28,7 @@ htmlhelp_basename = "TaDAsetsdoc"
 
 # Set canonical URL from the Read the Docs Domain
 html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
- 
+
 # Tell Jinja2 templates the build is running on Read the Docs
 if os.environ.get("READTHEDOCS", "") == "True":
     if "html_context" not in globals():

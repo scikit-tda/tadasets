@@ -46,6 +46,8 @@ testing = ["pytest", "pytest-cov", "scipy"]
 
 docs = ["sktda_docs_config"]
 
+ruff = ["ruff<0.12.0"]
+
 [project.urls]
 Homepage = "https://tadasets.scikit-tda.org"
 Documentation = "https://tadasets.scikit-tda.org"

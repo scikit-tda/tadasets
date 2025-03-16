@@ -1,5 +1,5 @@
 """
-    Methods for constructing point clouds from meshes.
+Methods for constructing point clouds from meshes.
 
 """
 
@@ -40,7 +40,7 @@ def from_mesh(vertices, triangles, n=1000):
     V2 = P2 - P0
     FNormals = np.cross(V1, V2)
     # import pdb; pdb.set_trace()
-    FAreas = np.sqrt(np.sum(FNormals ** 2, 1)).flatten()
+    FAreas = np.sqrt(np.sum(FNormals**2, 1)).flatten()
 
     # Get rid of zero area faces and update points
     triangles = triangles[FAreas > 0, :]
@@ -89,7 +89,7 @@ def from_mesh(vertices, triangles, n=1000):
 
     # Vector used to determine if points need to be flipped across parallelogram
     V3 = P2 - P1
-    V3 = V3 / np.sqrt(np.sum(V3 ** 2, 1))[:, None]  # Normalize
+    V3 = V3 / np.sqrt(np.sum(V3**2, 1))[:, None]  # Normalize
 
     # Randomly sample points on each face
     # Generate random points uniformly in parallelogram

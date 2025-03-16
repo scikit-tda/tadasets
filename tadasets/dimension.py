@@ -1,5 +1,5 @@
 """
-    Methods for embedding objects in high dimensional space.
+Methods for embedding objects in high dimensional space.
 
 """
 
@@ -7,7 +7,7 @@ import numpy as np
 
 
 def embed(data, ambient=50):
-    """ Embed `data` in `ambient` dimensions, regardless of dimensionality of data.
+    """Embed `data` in `ambient` dimensions, regardless of dimensionality of data.
 
     Inputs
     ------
@@ -18,10 +18,10 @@ def embed(data, ambient=50):
     """
 
     n, d = data.shape
-    assert (
-        ambient > d
-    ), "Dimensionality of ambient space ({}) must be greater than dimensionality of data ({}).".format(
-        ambient, d
+    assert ambient > d, (
+        "Dimensionality of ambient space ({}) must be greater than dimensionality of data ({}).".format(
+            ambient, d
+        )
     )
 
     base = np.zeros((n, ambient))

@@ -248,10 +248,10 @@ def infty_sign(
     if noise:
         X += noise * np.random.randn(n, 2)
     if angle is not None:
-        assert (
-            angle >= -np.pi and angle <= 2 * np.pi
-        ), "Angle {angle} not in range. Angle should be in the range {min_angle} <= angle <= {max_angle}".format(
-            angle=angle, min_angle="-pi", max_angle="2*pi"
+        assert angle >= -np.pi and angle <= 2 * np.pi, (
+            "Angle {angle} not in range. Angle should be in the range {min_angle} <= angle <= {max_angle}".format(
+                angle=angle, min_angle="-pi", max_angle="2*pi"
+            )
         )
 
         X = rotate_2D(X, angle=angle)
