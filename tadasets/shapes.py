@@ -7,9 +7,9 @@ __all__ = ["torus", "dsphere", "sphere", "swiss_roll", "infty_sign", "eyeglasses
 
 
 # TODO: Make a base class that controls `ambient` and `noise`.
-class Shape:
-    def __init__(self):
-        pass
+# class Shape:
+# def __init__(self):
+# pass
 
 
 def dsphere(
@@ -44,14 +44,14 @@ def dsphere(
         An ``(n,ambient)`` np.ndarray if ``ambient`` is specifed or
         a ``(n,d+1)`` np.ndarray otherwise.
     """
-    np.random.seed(seed)
-    data = np.random.randn(n, d + 1)
+    rng = np.random.default_rng(seed)
+    data = rng.standard_normal((n, d + 1))
 
     # Normalize points to the sphere
     data = r * data / np.sqrt(np.sum(data**2, 1)[:, None])
 
     if noise:
-        data += noise * np.random.randn(*data.shape)
+        data += noise * rng.standard_normal(data.shape)
 
     if ambient:
         assert ambient > d, "Must embed in higher dimensions"
@@ -89,9 +89,9 @@ def sphere(
         An ``(n,3)`` np.ndarray.
     """
 
-    np.random.seed(seed)
-    theta = np.random.random((n,)) * 2.0 * np.pi
-    phi = np.random.random((n,)) * np.pi
+    rng = np.random.default_rng(seed)
+    theta = rng.random(n) * 2.0 * np.pi
+    phi = rng.random(n) * np.pi
     rad = np.ones((n,)) * r
 
     data = np.zeros((n, 3))
@@ -101,7 +101,7 @@ def sphere(
     data[:, 2] = rad * np.sin(theta)
 
     if noise:
-        data += noise * np.random.randn(*data.shape)
+        data += noise * rng.standard_normal(data.shape)
 
     if ambient:
         data = embed(data, ambient)
@@ -143,9 +143,9 @@ def torus(
 
     assert a <= c, "That's not a torus"
 
-    np.random.seed(seed)
-    theta = np.random.random((n,)) * 2.0 * np.pi
-    phi = np.random.random((n,)) * 2.0 * np.pi
+    rng = np.random.default_rng(seed)
+    theta = rng.random(n) * 2.0 * np.pi
+    phi = rng.random(n) * 2.0 * np.pi
 
     data = np.zeros((n, 3))
     data[:, 0] = (c + a * np.cos(theta)) * np.cos(phi)
@@ -153,7 +153,7 @@ def torus(
     data[:, 2] = a * np.sin(theta)
 
     if noise:
-        data += noise * np.random.randn(*data.shape)
+        data += noise * rng.standard_normal(data.shape)
 
     if ambient:
         data = embed(data, ambient)
@@ -194,9 +194,9 @@ def swiss_roll(
         An ``(n,3)`` np.ndarray.
     """
 
-    np.random.seed(seed)
-    phi = (np.random.random((n,)) * 3 + 1.5) * np.pi
-    psi = np.random.random((n,)) * r
+    rng = np.random.default_rng(seed)
+    phi = (rng.random(n) * 3 + 1.5) * np.pi
+    psi = rng.random(n) * r
 
     data = np.zeros((n, 3))
     data[:, 0] = phi * np.cos(phi)
@@ -204,7 +204,7 @@ def swiss_roll(
     data[:, 2] = psi
 
     if noise:
-        data += noise * np.random.randn(*data.shape)
+        data += noise * rng.standard_normal(data.shape)
 
     if ambient:
         data = embed(data, ambient)
@@ -238,15 +238,14 @@ def infty_sign(
     data : np.ndarray
         An ``(n,2)`` np.ndarray.
     """
-
-    np.random.seed(seed)
+    rng = np.random.default_rng(seed)
     t = np.linspace(0, 2 * np.pi, n + 1)[0:n]
     X = np.zeros((n, 2))
     X[:, 0] = np.cos(t)
     X[:, 1] = np.sin(2 * t)
 
     if noise:
-        X += noise * np.random.randn(n, 2)
+        X += noise * rng.standard_normal((n, 2))
     if angle is not None:
         assert angle >= -np.pi and angle <= 2 * np.pi, (
             "Angle {angle} not in range. Angle should be in the range {min_angle} <= angle <= {max_angle}".format(
@@ -265,7 +264,7 @@ def eyeglasses(
     neck_size: Optional[float] = None,
     noise: Optional[float] = None,
     ambient: Optional[int] = None,
-    seed: Optional[float] = None,
+    seed: Optional[int] = None,
 ) -> np.ndarray:
     """Sample ``n`` points on an eyeglasses shape.
 
@@ -293,7 +292,7 @@ def eyeglasses(
         An ``(n,ambient)`` np.ndarray if ``ambient`` is specified or
         an ``(n,2)`` np.ndarray otherwise.
     """
-    np.random.seed(seed)
+    rng = np.random.default_rng(seed)
 
     if r2 is None:
         r2 = r1
@@ -344,9 +343,7 @@ def eyeglasses(
 
     data = []
     for x in ["l", "r", "t", "b"]:
-        angles = np.random.uniform(
-            size=counts[x], low=angle_ranges[x][0], high=angle_ranges[x][1]
-        )
+        angles = rng.uniform(angle_ranges[x][0], angle_ranges[x][1], counts[x])
         points = (
             np.vstack((radii[x] * np.cos(angles), radii[x] * np.sin(angles))).T
             + centers[x]
@@ -356,7 +353,7 @@ def eyeglasses(
     data = np.concatenate(data)
 
     if noise:
-        data += noise * np.random.randn(n, 2)
+        data += noise * rng.standard_normal((n, 2))
 
     if ambient:
         data = embed(data, ambient)

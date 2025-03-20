@@ -48,6 +48,11 @@ class TestSphere:
         s = tadasets.sphere(n=200, r=3, ambient=15)
         assert s.shape == (200, 15)
 
+    def test_noise(self):
+        s = tadasets.sphere(n=100, noise=0.1)
+        rs = np.fromiter((norm(p) for p in s), np.float64)
+        assert np.any(rs != 1.0)
+
 
 class TestDsphere:
     def test_d(self):
@@ -64,10 +69,19 @@ class TestDsphere:
         rs = np.fromiter((norm(p) for p in s), np.float64)
         assert np.all([4 - 1e-5 <= r <= 4 + 1e-5 for r in rs])
 
+    def test_noise(self):
+        s = tadasets.dsphere(n=100, d=2, noise=0.1)
+        rs = np.fromiter((norm(p) for p in s), np.float64)
+        assert np.any(rs != 1.0)
+
+    def test_ambient(self):
+        s = tadasets.dsphere(n=200, d=2, ambient=15)
+        assert s.shape == (200, 15)
+
 
 class TestTorus:
     def test_n(self):
-        t = tadasets.torus(n=345)
+        t = tadasets.torus(n=345, noise=0.1)
         assert t.shape[0] == 345
 
     def test_bounds(self):
@@ -89,7 +103,7 @@ class TestTorus:
 
 class TestSwissRoll:
     def test_n(self):
-        t = tadasets.swiss_roll(n=345)
+        t = tadasets.swiss_roll(n=345, noise=0.1)
         assert t.shape[0] == 345
 
     def test_plt(self):
@@ -103,7 +117,7 @@ class TestSwissRoll:
 
 class TestInfty:
     def test_n(self):
-        t = tadasets.infty_sign(n=345)
+        t = tadasets.infty_sign(n=345, noise=0.1)
         assert t.shape[0] == 345
 
     def test_rotation(self):
@@ -119,7 +133,7 @@ class TestInfty:
 
 class TestEyeglasses:
     def test_n(self):
-        t = tadasets.eyeglasses(n=345, r1=1, r2=2, neck_size=0.8)
+        t = tadasets.eyeglasses(n=345, r1=1, r2=2, neck_size=0.8, noise=0.1)
         assert t.shape[0] == 345
 
     def test_neck(self):
@@ -134,3 +148,12 @@ class TestEyeglasses:
         left, right = t[t[:, 0] < 0], t[t[:, 0] > 0]
         assert np.abs(left[:, 1].max() - 1) <= 0.001
         assert np.abs(right[:, 1].max() - 2) <= 0.001
+
+    def test_r2(self):
+        t = tadasets.eyeglasses(n=5000, r1=1)
+        left, _ = t[t[:, 0] < 0], t[t[:, 0] > 0]
+        assert np.abs(left[:, 1].max() - 1) <= 0.001
+
+    def test_ambient(self):
+        s = tadasets.eyeglasses(n=200, r1=1, r2=2, neck_size=0.8, ambient=15)
+        assert s.shape == (200, 15)
