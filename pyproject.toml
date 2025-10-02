@@ -42,7 +42,7 @@ keywords = [
 ]
 
 [project.optional-dependencies]
-testing = ["pytest", "pytest-cov", "scipy"]
+testing = ["pytest", "pytest-cov", "scikit-learn", "scipy"]
 
 docs = ["sktda_docs_config"]
 
