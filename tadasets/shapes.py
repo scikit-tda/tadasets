@@ -66,6 +66,7 @@ def sphere(
     noise: Optional[float] = None,
     ambient: Optional[int] = None,
     seed: Optional[int] = None,
+    uniform: bool = False,
 ) -> np.ndarray:
     """
         Sample ``n`` data points on a sphere.
@@ -82,6 +83,8 @@ def sphere(
         Embed the sphere into a space with ambient dimension equal to `ambient`. The sphere is randomly rotated in this high dimensional space.
     seed : int, optional
         Seed for random state.
+    uniform : bool, default=False
+        If True, sample points uniformly on the sphere. If False, sample points by choosing spherical coordinates uniformly.
 
     Returns
     -------
@@ -90,15 +93,21 @@ def sphere(
     """
 
     rng = np.random.default_rng(seed)
-    theta = rng.random(n) * 2.0 * np.pi
-    phi = rng.random(n) * np.pi
-    rad = np.ones((n,)) * r
 
-    data = np.zeros((n, 3))
+    if uniform:
+        data = rng.standard_normal((n, 3))
+        data = r * data / np.sqrt(np.sum(data**2, 1)[:, None])
 
-    data[:, 0] = rad * np.cos(theta) * np.cos(phi)
-    data[:, 1] = rad * np.cos(theta) * np.sin(phi)
-    data[:, 2] = rad * np.sin(theta)
+    else:
+        theta = rng.random(n) * 2.0 * np.pi
+        phi = rng.random(n) * np.pi
+        rad = np.ones((n,)) * r
+
+        data = np.zeros((n, 3))
+
+        data[:, 0] = rad * np.cos(theta) * np.cos(phi)
+        data[:, 1] = rad * np.cos(theta) * np.sin(phi)
+        data[:, 2] = rad * np.sin(theta)
 
     if noise:
         data += noise * rng.standard_normal(data.shape)
@@ -116,6 +125,7 @@ def torus(
     noise: Optional[float] = None,
     ambient: Optional[int] = None,
     seed: Optional[int] = None,
+    uniform: bool = False,
 ) -> np.ndarray:
     """
     Sample ``n`` data points on a torus.
@@ -134,6 +144,8 @@ def torus(
         Embed the torus into a space with ambient dimension equal to `ambient`. The torus is randomly rotated in this high dimensional space.
     seed : int, optional
         Seed for random state.
+    uniform : bool, default=False
+        If True, sample points uniformly on the torus. If False, sample points by choosing angles uniformly.
 
     Returns
     -------
@@ -144,13 +156,31 @@ def torus(
     assert a <= c, "That's not a torus"
 
     rng = np.random.default_rng(seed)
-    theta = rng.random(n) * 2.0 * np.pi
-    phi = rng.random(n) * 2.0 * np.pi
+    if uniform:
+        samples = []
+        while len(samples) < n:
+            u = np.random.uniform(0, 2 * np.pi)
+            v = np.random.uniform(0, 2 * np.pi)
+            x = (c + a * np.cos(v)) * np.cos(u)
+            y = (c + a * np.cos(v)) * np.sin(u)
+            z = a * np.sin(v)
 
-    data = np.zeros((n, 3))
-    data[:, 0] = (c + a * np.cos(theta)) * np.cos(phi)
-    data[:, 1] = (c + a * np.cos(theta)) * np.sin(phi)
-    data[:, 2] = a * np.sin(theta)
+            # REJECTION SAMPLING TO ENSURE UNIFORMITY
+            # The map from u,v to x,y,z is not area-preserving, so we use rejection sampling to ensure uniformity
+            jacobian = a * (c + a * np.cos(v))
+            acceptance_prob = jacobian / (a * (c + a))
+            if np.random.uniform(0, 1) < acceptance_prob:
+                samples.append((x, y, z))
+        data = np.array(samples)
+
+    else:
+        theta = rng.random(n) * 2.0 * np.pi
+        phi = rng.random(n) * 2.0 * np.pi
+
+        data = np.zeros((n, 3))
+        data[:, 0] = (c + a * np.cos(theta)) * np.cos(phi)
+        data[:, 1] = (c + a * np.cos(theta)) * np.sin(phi)
+        data[:, 2] = a * np.sin(theta)
 
     if noise:
         data += noise * rng.standard_normal(data.shape)
