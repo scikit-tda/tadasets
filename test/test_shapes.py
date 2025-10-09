@@ -54,12 +54,10 @@ class TestSphere:
         rs = np.fromiter((norm(p) for p in s), np.float64)
         assert np.any(rs != 1.0)
 
-
     def test_uniform(self):
-        s = tadasets.sphere(n=6400, r=1,uniform=True)
+        s = tadasets.sphere(n=6400, r=1, uniform=True)
         epsilon = 0.5
-        
-        
+
         nbrs = NearestNeighbors(radius=epsilon).fit(s)
 
         # Compute the number of points within the epsilon-ball around each point
@@ -127,8 +125,7 @@ class TestTorus:
         c, a = 3.183, 1
         s = tadasets.torus(n=16000, c=c, a=a, uniform=True)
         epsilon = 0.5
-        
-        
+
         nbrs = NearestNeighbors(radius=epsilon).fit(s)
 
         # Compute the number of points within the epsilon-ball around each point

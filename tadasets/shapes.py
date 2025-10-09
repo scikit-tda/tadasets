@@ -164,7 +164,7 @@ def torus(
             x = (c + a * np.cos(v)) * np.cos(u)
             y = (c + a * np.cos(v)) * np.sin(u)
             z = a * np.sin(v)
-            
+
             # REJECTION SAMPLING TO ENSURE UNIFORMITY
             # The map from u,v to x,y,z is not area-preserving, so we use rejection sampling to ensure uniformity
             jacobian = a * (c + a * np.cos(v))
@@ -389,5 +389,3 @@ def eyeglasses(
         data = embed(data, ambient)
 
     return data
-
-
