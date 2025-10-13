@@ -2,6 +2,7 @@ import numpy as np
 import pytest
 import tadasets
 from scipy.spatial.distance import pdist
+from sklearn.neighbors import NearestNeighbors
 
 
 def norm(p):
@@ -53,6 +54,26 @@ class TestSphere:
         rs = np.fromiter((norm(p) for p in s), np.float64)
         assert np.any(rs != 1.0)
 
+    def test_uniform(self):
+        s = tadasets.sphere(n=6400, r=1, uniform=True)
+        epsilon = 0.5
+
+        nbrs = NearestNeighbors(radius=epsilon).fit(s)
+
+        # Compute the number of points within the epsilon-ball around each point
+        distances, indices = nbrs.radius_neighbors(s)
+        num_points_in_ball = [len(ind) for ind in indices]
+
+        # Caculate the mean and standard deviation of the counts
+        # For a uniform sampling on the sphere, this ditribution should be roughly normal
+        # The expected mean is n/16 = 400
+        # The standard deviation should be approximately np.sqrt(400) = 20
+        mean_count = np.mean(num_points_in_ball)
+        std_count = np.std(num_points_in_ball)
+
+        assert mean_count > 395 and mean_count < 405
+        assert std_count < 45
+
 
 class TestDsphere:
     def test_d(self):
@@ -99,6 +120,27 @@ class TestTorus:
     def test_ambient(self):
         s = tadasets.torus(n=200, c=3, ambient=15)
         assert s.shape == (200, 15)
+
+    def test_uniform(self):
+        c, a = 3.183, 1
+        s = tadasets.torus(n=16000, c=c, a=a, uniform=True)
+        epsilon = 0.5
+
+        nbrs = NearestNeighbors(radius=epsilon).fit(s)
+
+        # Compute the number of points within the epsilon-ball around each point
+        distances, indices = nbrs.radius_neighbors(s)
+        num_points_in_ball = [len(ind) for ind in indices]
+
+        # Caculate the mean and standard deviation of the counts
+        # For a uniform sampling on the sphere, this ditribution should be roughly normal
+        # The expected mean is n/160 = 100
+        # The standard deviation should be approximately np.sqrt(100) = 10
+        mean_count = np.mean(num_points_in_ball)
+        std_count = np.std(num_points_in_ball)
+
+        assert mean_count > 95 and mean_count < 105
+        assert std_count < 25
 
 
 class TestSwissRoll:
