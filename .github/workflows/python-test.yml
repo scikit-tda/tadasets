@@ -60,4 +60,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           name: tadasets
           verbose: true
-          fail_ci_if_error: true
+          fail_ci_if_error: false
