@@ -2,6 +2,7 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/tadasets)
 [![Codecov](https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg)](https://codecov.io/gh/scikit-tda/tadasets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 This package provides some nice utilities for creating and loading data sets
 that are useful for Topological Data Analysis. Currently, we provide various
