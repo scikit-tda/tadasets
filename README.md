@@ -2,9 +2,10 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/tadasets)
 [![Codecov](https://codecov.io/gh/scikit-tda/tadasets/branch/master/graph/badge.svg)](https://codecov.io/gh/scikit-tda/tadasets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-This package provides some nice utilities for creating and loading data sets
-that are useful for Topological Data Analysis. Currently, we provide various
+Tadasets provides various utilities for creating and loading data sets
+that are useful for Topological Data Analysis. Currently, we provide several
 synthetic data sets with particular topological features.
 
 # Setup
@@ -43,4 +44,6 @@ We welcome contributions of all shapes and sizes. There are lots of opportunitie
 
 If you have ideas for new shapes or features, please do suggest them in an issue and submit a pull request!
 
-To contribute please fork the project make your changes and submit a pull request. We will do our best to work through any issues with you and get your code merged into the main branch.
+To contribute please fork the project make your changes and submit a pull request. See scikit-tda's
+[contributing docs](https://github.com/scikit-tda/scikit-tda/blob/master/CONTRIBUTING.md) for more
+detailed information. We will do our best to work through any issues with you and get your code merged into the main branch.
