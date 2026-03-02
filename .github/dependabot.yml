@@ -8,4 +8,9 @@ updates:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
     commit-message:
-      prefix: "ci"
+      prefix: "chore(deps):"
+    groups:
+      artifact-actions:
+        patterns:
+          - "actions/upload-artifact"
+          - "actions/download-artifact"
